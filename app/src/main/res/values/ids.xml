@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="home_team" type="id" />
+    <item name="away_team" type="id" />
+    <item name="home_score" type="id" />
+    <item name="away_score" type="id" />
+    <item name="date_match" type="id" />
+    <item name="vs" type="id" />
+</resources>
