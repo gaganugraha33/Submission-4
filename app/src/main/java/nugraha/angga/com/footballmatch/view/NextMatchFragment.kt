@@ -6,7 +6,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.match_layout.*
 import nugraha.angga.com.footballmatch.R
 import nugraha.angga.com.footballmatch.`interface`.MatchFragmentView
@@ -44,7 +46,7 @@ class NextMatchFragment :Fragment(), MatchFragmentView {
         val compositeDisposable: CompositeDisposable = CompositeDisposable()
         val repository = ServiceSportDBProvider.providerNextMatchRepository()
 
-        matchfragmentPresenter = MatchFragmentPresenter(this, compositeDisposable, repository)
+        matchfragmentPresenter = MatchFragmentPresenter(this, compositeDisposable, repository, AndroidSchedulers.mainThread(), Schedulers.io())
         matchfragmentPresenter.getNextMatchList()
 
 

@@ -51,7 +51,7 @@ class MainActivityTest {
     }
 
     @Test
-    fun testNextFavoriteBehaviour() {
+    fun testFavoriteBehaviour() {
 
         Espresso.onView(ViewMatchers.withId(R.id.bottom_navigation))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))

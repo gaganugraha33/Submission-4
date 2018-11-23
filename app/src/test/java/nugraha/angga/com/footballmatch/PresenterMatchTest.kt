@@ -40,34 +40,48 @@ class PresenterMatchTest {
     private
     lateinit var matchFragmentPresenter: MatchFragmentPresenter
 
+    @Mock
+    private
+    lateinit var response: MatchFootbal
+
     @Before
     fun setup(){
         MockitoAnnotations.initMocks(this)
-        matchFragmentPresenter = MatchFragmentPresenter(view, compositeDisposable, apiRepositoryTest)
+
     }
 
     @Test
     fun getTestMatchList(){
         val listEventMatch: MutableList<EventMatch> = mutableListOf()
-        var response =  EventMatchResponse(listEventMatch)
 
+        `when`(apiRepositoryTest.lastMatchReq()
+        ).thenReturn(Observable.just(response))
 
-        `when`(compositeDisposable.add(
-                apiRepositoryTest.lastMatchReq()
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(Schedulers.io())
-                        .subscribe ({
-                            EventMatch ->
-                        }, { error ->
-                            error.printStackTrace()
-                        })
-        )
-        ).thenReturn(response)
-
+        matchFragmentPresenter = MatchFragmentPresenter(view, compositeDisposable, apiRepositoryTest, Schedulers.trampoline(), Schedulers.trampoline())
         matchFragmentPresenter.getMatchList()
+
+        response?.events?.let { listEventMatch.addAll(it) }
 
         Mockito.verify(view).showLoading()
         Mockito.verify(view).hideLoading()
         Mockito.verify(view).showMatchList(listEventMatch)
     }
+
+    @Test
+    fun getTestNextMatchList(){
+        val listEventMatch: MutableList<EventMatch> = mutableListOf()
+
+        `when`(apiRepositoryTest.nextMatchReq()
+        ).thenReturn(Observable.just(response))
+
+        matchFragmentPresenter = MatchFragmentPresenter(view, compositeDisposable, apiRepositoryTest, Schedulers.trampoline(), Schedulers.trampoline())
+        matchFragmentPresenter.getNextMatchList()
+
+        response?.events?.let { listEventMatch.addAll(it) }
+
+        Mockito.verify(view).showLoading()
+        Mockito.verify(view).hideLoading()
+        Mockito.verify(view).showMatchList(listEventMatch)
+    }
+
 }

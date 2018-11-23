@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.bumptech.glide.Glide
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.detail_activity_layout.*
 import nugraha.angga.com.footballmatch.R
 import nugraha.angga.com.footballmatch.`interface`.DetailActivityView
@@ -71,7 +73,7 @@ class DetaillActivity:AppCompatActivity(), DetailActivityView {
         val compositeDisposable: CompositeDisposable = CompositeDisposable()
         val repository = ServiceSportDBProvider.providerAllTeamLeagueTeamRepository()
 
-        detailActivityPresenter = DetailActivityPresenter(this, compositeDisposable, repository)
+        detailActivityPresenter = DetailActivityPresenter(this, compositeDisposable, repository, AndroidSchedulers.mainThread(), Schedulers.io())
         detailActivityPresenter.getAllTeamLeagueList()
 
         swpDetail.onRefresh {
