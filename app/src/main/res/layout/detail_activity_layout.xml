@@ -24,7 +24,7 @@
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="tanggal"
+                tools:text="@string/tanggal"
                 android:textSize="20sp"
                 android:textColor="@color/colorPrimary"
                 />
@@ -56,7 +56,7 @@
                         android:gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="Name club home"
+                        tools:text="@string/name_club_home"
                         android:textSize="20sp"
                         android:textColor="@color/colorPrimary"
                         />
@@ -90,7 +90,7 @@
                         android:layout_height="match_parent"
                         android:textSize="22sp"
                         android:textColor="@color/gray"
-                        android:text="vs"
+                        android:text="@string/vs"
                         />
 
                     <TextView
@@ -126,7 +126,7 @@
                         android:gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="Name club away"
+                        tools:text="@string/name_club_away"
                         android:textSize="20sp"
                         android:textColor="@color/colorPrimary"
                         />
@@ -153,7 +153,7 @@
                     android:id="@+id/tvGoalHomeName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="nama goal brohasdasdasdaasdasdasdsdasdasdasd"
+                    tools:text="@string/name_goal"
                     android:textSize="15sp"
                     android:textColor="@color/gray"
                     />
@@ -162,7 +162,7 @@
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Goals"
+                    android:text="@string/goals"
                     android:gravity="center"
                     android:textSize="15sp"
                     android:textColor="@color/colorPrimary"
@@ -173,7 +173,7 @@
                     android:id="@+id/tvGoalAwayName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="nama goal brohdasdasdasdasd"
+                    tools:text="@string/name_goal"
                     android:textSize="15sp"
                     android:textColor="@color/gray"
                     />
@@ -201,7 +201,7 @@
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Shots"
+                    android:text="@string/shots"
                     android:gravity="center"
                     android:textSize="15sp"
                     android:textColor="@color/colorPrimary"
@@ -231,7 +231,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lineups"
+                android:text="@string/lineups"
                 android:gravity="center"
                 android:textColor="@color/gray"
                 android:textSize="17sp"
@@ -248,7 +248,7 @@
                     android:id="@+id/tvGoalKeeperHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="asdasdasdasdasdasd"
+                    tools:text="@string/data_test"
                     android:textSize="15sp"
                     android:textColor="@color/gray"
                     />
@@ -257,7 +257,7 @@
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Goal Keeper"
+                    android:text="@string/goal_keeper"
                     android:gravity="center"
                     android:textSize="15sp"
                     android:textColor="@color/colorPrimary"
@@ -268,7 +268,7 @@
                     android:id="@+id/tvGoalKeeperAway"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="asdasdasdasdasdasd"
+                    tools:text="@string/data_test"
                     android:textSize="15sp"
                     android:textColor="@color/gray"
                     />
@@ -286,7 +286,7 @@
                     android:id="@+id/tvDefenseHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="asdasdasdasdasdasd"
+                    tools:text="@string/data_test"
                     android:textSize="15sp"
                     android:textColor="@color/gray"
                     />
@@ -295,7 +295,7 @@
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Defense"
+                    android:text="@string/defense"
                     android:gravity="center"
                     android:textSize="15sp"
                     android:textColor="@color/colorPrimary"
@@ -306,7 +306,7 @@
                     android:id="@+id/tvDefenseAway"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="asdasdasdasdasdasd"
+                    tools:text="@string/data_test"
                     android:textSize="15sp"
                     android:textColor="@color/gray"
                     />
@@ -324,7 +324,7 @@
                     android:id="@+id/tvMidFieldHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="asdasdasdasdasdasd"
+                    tools:text="@string/data_test"
                     android:textSize="15sp"
                     android:textColor="@color/gray"
                     />
@@ -334,7 +334,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Midfield  "
+                    android:text="@string/midfield"
                     android:textColor="@color/colorPrimary"
                     android:textSize="15sp" />
 
@@ -343,7 +343,7 @@
                     android:id="@+id/tvMidFieldAway"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="asdasdasdasdasdasd"
+                    tools:text="@string/data_test"
                     android:textSize="15sp"
                     android:textColor="@color/gray"
                     />
@@ -361,7 +361,7 @@
                     android:id="@+id/tvForwardHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="asdasdasdasdasdasd"
+                    tools:text="@string/data_test"
                     android:textSize="15sp"
                     android:textColor="@color/gray"
                     />
@@ -370,7 +370,7 @@
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Forward"
+                    android:text="@string/forward"
                     android:gravity="center"
                     android:textSize="15sp"
                     android:textColor="@color/colorPrimary"
@@ -381,7 +381,7 @@
                     android:id="@+id/tvForwardAway"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="asdasdasdasdasdasd"
+                    tools:text="@string/data_test"
                     android:textSize="15sp"
                     android:textColor="@color/gray"
                     />
@@ -399,7 +399,7 @@
                     android:id="@+id/tvSubtitutesHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="asdasdasdasdasdasd"
+                    tools:text="@string/data_test"
                     android:textSize="15sp"
                     android:textColor="@color/gray"
                     />
@@ -408,7 +408,7 @@
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Subtitutes"
+                    android:text="@string/subtitutes"
                     android:gravity="center"
                     android:textSize="15sp"
                     android:textColor="@color/colorPrimary"
@@ -419,7 +419,7 @@
                     android:id="@+id/tvSubtitutesAway"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="asdasdasdasdasdasd"
+                    tools:text="@string/data_test"
                     android:textSize="15sp"
                     android:textColor="@color/gray"
                     />

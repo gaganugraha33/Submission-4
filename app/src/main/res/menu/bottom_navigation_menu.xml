@@ -4,14 +4,14 @@
     <item
         android:id="@+id/prev_match"
         android:enabled="true"
-        android:title="@string/prevmatch"
+        android:title="@string/prev_match"
         android:icon="@drawable/ic_trophy"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/next_match"
         android:enabled="true"
-        android:title="@string/nextmatch"
+        android:title="@string/next_match"
         android:icon="@drawable/ic_calendar"
         app:showAsAction="ifRoom"/>
 

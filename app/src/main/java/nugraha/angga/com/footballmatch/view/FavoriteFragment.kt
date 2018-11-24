@@ -12,7 +12,7 @@ import nugraha.angga.com.footballmatch.R
 import nugraha.angga.com.footballmatch.`interface`.FavoriteFragmentView
 import nugraha.angga.com.footballmatch.adapter.MatchAdapter
 import nugraha.angga.com.footballmatch.db.Favorite
-import nugraha.angga.com.footballmatch.model.EventMatchModel.EventMatch
+import nugraha.angga.com.footballmatch.model.eventMatchModel.EventMatch
 import nugraha.angga.com.footballmatch.presenter.FavoriteFragmentPresenter
 import org.jetbrains.anko.support.v4.onRefresh
 import java.io.Serializable
@@ -59,31 +59,32 @@ class FavoriteFragment : Fragment(), FavoriteFragmentView {
         swpLayout.isRefreshing = false
         favorites.clear()
 
-        for (i in dataFavorite!!.indices){
-//            favorites.add(dataFavorite.get(i) as EventMatch)
-            var eventMatch = EventMatch()
-            eventMatch.idEvent = dataFavorite.get(i).idEvent
-            eventMatch.intAwayScore = dataFavorite.get(i).intAwayScore
-            eventMatch.intHomeScore = dataFavorite.get(i).intHomeScore
-            eventMatch.intHomeShots = dataFavorite.get(i).intHomeShots
-            eventMatch.intAwayShots = dataFavorite.get(i).intAwayShots
-            eventMatch.strAwayGoalDetails = dataFavorite.get(i).strAwayGoalDetails
-            eventMatch.strHomeGoalDetails = dataFavorite.get(i).strHomeGoalDetails
-            eventMatch.strHomeLineupDefense = dataFavorite.get(i).strHomeLineupDefense
-            eventMatch.strAwayLineupDefense = dataFavorite.get(i).strAwayLineupDefense
-            eventMatch.strAwayLineupForward = dataFavorite.get(i).strAwayLineupForward
-            eventMatch.strHomeLineupForward = dataFavorite.get(i).strHomeLineupForward
-            eventMatch.strHomeLineupGoalkeeper = dataFavorite.get(i).strHomeLineupGoalkeeper
-            eventMatch.strAwayLineupGoalkeeper = dataFavorite.get(i).strAwayLineupGoalkeeper
-            eventMatch.strAwayLineupMidfield = dataFavorite.get(i).strAwayLineupMidfield
-            eventMatch.strHomeLineupMidfield = dataFavorite.get(i).strHomeLineupMidfield
-            eventMatch.strHomeLineupSubstitutes = dataFavorite.get(i).strHomeLineupSubstitutes
-            eventMatch.strAwayLineupSubstitutes = dataFavorite.get(i).strAwayLineupSubstitutes
-            eventMatch.strHomeTeam = dataFavorite.get(i).strHomeTeam
-            eventMatch.strAwayTeam = dataFavorite.get(i).strAwayTeam
-            eventMatch.dateEvent = dataFavorite.get(i).strDate
+        if (dataFavorite != null) {
+            for (i in dataFavorite.indices){
+                var eventMatch = EventMatch()
+                eventMatch.idEvent = dataFavorite.get(i).idEvent
+                eventMatch.intAwayScore = dataFavorite.get(i).intAwayScore
+                eventMatch.intHomeScore = dataFavorite.get(i).intHomeScore
+                eventMatch.intHomeShots = dataFavorite.get(i).intHomeShots
+                eventMatch.intAwayShots = dataFavorite.get(i).intAwayShots
+                eventMatch.strAwayGoalDetails = dataFavorite.get(i).strAwayGoalDetails
+                eventMatch.strHomeGoalDetails = dataFavorite.get(i).strHomeGoalDetails
+                eventMatch.strHomeLineupDefense = dataFavorite.get(i).strHomeLineupDefense
+                eventMatch.strAwayLineupDefense = dataFavorite.get(i).strAwayLineupDefense
+                eventMatch.strAwayLineupForward = dataFavorite.get(i).strAwayLineupForward
+                eventMatch.strHomeLineupForward = dataFavorite.get(i).strHomeLineupForward
+                eventMatch.strHomeLineupGoalkeeper = dataFavorite.get(i).strHomeLineupGoalkeeper
+                eventMatch.strAwayLineupGoalkeeper = dataFavorite.get(i).strAwayLineupGoalkeeper
+                eventMatch.strAwayLineupMidfield = dataFavorite.get(i).strAwayLineupMidfield
+                eventMatch.strHomeLineupMidfield = dataFavorite.get(i).strHomeLineupMidfield
+                eventMatch.strHomeLineupSubstitutes = dataFavorite.get(i).strHomeLineupSubstitutes
+                eventMatch.strAwayLineupSubstitutes = dataFavorite.get(i).strAwayLineupSubstitutes
+                eventMatch.strHomeTeam = dataFavorite.get(i).strHomeTeam
+                eventMatch.strAwayTeam = dataFavorite.get(i).strAwayTeam
+                eventMatch.dateEvent = dataFavorite.get(i).strDate
 
-            favorites.add(eventMatch)
+                favorites.add(eventMatch)
+            }
         }
 
         matchAdapter.notifyDataSetChanged()

@@ -16,8 +16,8 @@ import nugraha.angga.com.footballmatch.`interface`.DetailActivityView
 import nugraha.angga.com.footballmatch.api.ServiceSportDBProvider
 import nugraha.angga.com.footballmatch.db.Favorite
 import nugraha.angga.com.footballmatch.db.database
-import nugraha.angga.com.footballmatch.model.AllTeamLeagueModel.Team
-import nugraha.angga.com.footballmatch.model.EventMatchModel.EventMatch
+import nugraha.angga.com.footballmatch.model.allTeamLeagueModel.Team
+import nugraha.angga.com.footballmatch.model.eventMatchModel.EventMatch
 import nugraha.angga.com.footballmatch.presenter.DetailActivityPresenter
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.delete
@@ -25,7 +25,6 @@ import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
 import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.support.v4.onRefresh
-import org.jetbrains.anko.support.v4.swipeRefreshLayout
 import java.text.SimpleDateFormat
 
 class DetaillActivity:AppCompatActivity(), DetailActivityView {
@@ -39,36 +38,36 @@ class DetaillActivity:AppCompatActivity(), DetailActivityView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail_activity_layout)
-        println("cekk isi data bosss masuk sini ga")
+
         val actionBar = supportActionBar
         actionBar!!.setDisplayHomeAsUpEnabled(true)
 
 
-        dataEvent = intent.extras.get("data") as EventMatch
+        dataEvent = intent.getSerializableExtra("data") as EventMatch
         favoriteState()
 
-        nameHomeClub = dataEvent!!.strHomeTeam.toString()
-        nameAwayClub = dataEvent!!.strAwayTeam.toString()
+        nameHomeClub = dataEvent?.strHomeTeam.toString()
+        nameAwayClub = dataEvent?.strAwayTeam.toString()
 
         tvTanggal.text = getDateWithServerTimeStamp(dataEvent!!.dateEvent.toString())
-        tvNameHomeClub.text = dataEvent!!.strHomeTeam
-        tvNameAwayClub.text = dataEvent!!.strAwayTeam
-        tvScoreHome.text = dataEvent!!.intHomeScore
-        tvScoreAway.text = dataEvent!!.intAwayScore
-        tvGoalHomeName.text = dataEvent!!.strHomeGoalDetails
-        tvGoalAwayName.text = dataEvent!!.strAwayGoalDetails
-        tvScoreShotHome.text = dataEvent!!.intHomeShots
-        tvScoreShotAway.text = dataEvent!!.intAwayShots
-        tvGoalKeeperHome.text = dataEvent!!.strHomeLineupGoalkeeper
-        tvGoalKeeperAway.text = dataEvent!!.strAwayLineupGoalkeeper
-        tvDefenseHome.text = dataEvent!!.strHomeLineupDefense
-        tvDefenseAway.text = dataEvent!!.strAwayLineupDefense
-        tvMidFieldHome.text = dataEvent!!.strHomeLineupMidfield
-        tvMidFieldAway.text = dataEvent!!.strAwayLineupMidfield
-        tvForwardHome.text = dataEvent!!.strHomeLineupForward
-        tvForwardAway.text = dataEvent!!.strAwayLineupForward
-        tvSubtitutesHome.text = dataEvent!!.strHomeLineupSubstitutes
-        tvSubtitutesAway.text = dataEvent!!.strAwayLineupSubstitutes
+        tvNameHomeClub.text = dataEvent?.strHomeTeam
+        tvNameAwayClub.text = dataEvent?.strAwayTeam
+        tvScoreHome.text = dataEvent?.intHomeScore
+        tvScoreAway.text = dataEvent?.intAwayScore
+        tvGoalHomeName.text = dataEvent?.strHomeGoalDetails
+        tvGoalAwayName.text = dataEvent?.strAwayGoalDetails
+        tvScoreShotHome.text = dataEvent?.intHomeShots
+        tvScoreShotAway.text = dataEvent?.intAwayShots
+        tvGoalKeeperHome.text = dataEvent?.strHomeLineupGoalkeeper
+        tvGoalKeeperAway.text = dataEvent?.strAwayLineupGoalkeeper
+        tvDefenseHome.text = dataEvent?.strHomeLineupDefense
+        tvDefenseAway.text = dataEvent?.strAwayLineupDefense
+        tvMidFieldHome.text = dataEvent?.strHomeLineupMidfield
+        tvMidFieldAway.text = dataEvent?.strAwayLineupMidfield
+        tvForwardHome.text = dataEvent?.strHomeLineupForward
+        tvForwardAway.text = dataEvent?.strAwayLineupForward
+        tvSubtitutesHome.text = dataEvent?.strHomeLineupSubstitutes
+        tvSubtitutesAway.text = dataEvent?.strAwayLineupSubstitutes
 
         val compositeDisposable: CompositeDisposable = CompositeDisposable()
         val repository = ServiceSportDBProvider.providerAllTeamLeagueTeamRepository()
@@ -85,28 +84,28 @@ class DetaillActivity:AppCompatActivity(), DetailActivityView {
         try {
             database.use {
                 insert(Favorite.TABLE_FAVORITE,
-                        Favorite.ID_EVENT to dataEvent!!.idEvent,
-                        Favorite.HOME_TEAM_NAME to dataEvent!!.strHomeTeam,
-                        Favorite.AWAY_TEAM_NAME to dataEvent!!.strAwayTeam,
-                        Favorite.HOME_TEAM_SCORE to dataEvent!!.intHomeScore,
-                        Favorite.AWAY_TEAM_SCORE to dataEvent!!.intAwayScore,
-                        Favorite.HOME_GOAL_DETAIL to dataEvent!!.strHomeGoalDetails,
-                        Favorite.AWAY_GOAL_DETAIL to dataEvent!!.strAwayGoalDetails,
-                        Favorite.HOME_SHOTS to dataEvent!!.intHomeShots,
-                        Favorite.AWAY_SHOTS to dataEvent!!.intAwayShots,
-                        Favorite.HOME_LINEUP_GOALKEEPER to dataEvent!!.strHomeLineupGoalkeeper,
-                        Favorite.AWAY_LINEUP_GOALKEEPER to dataEvent!!.strAwayLineupGoalkeeper,
-                        Favorite.HOME_LINEUP_DEFENSE to dataEvent!!.strHomeLineupDefense,
-                        Favorite.AWAY_LINEUP_DEFENSE to dataEvent!!.strAwayLineupDefense,
-                        Favorite.HOME_LINEUP_MIDFIELD to dataEvent!!.strHomeLineupMidfield,
-                        Favorite.AWAY_LINEUP_MIDFIELD to dataEvent!!.strAwayLineupMidfield,
-                        Favorite.HOME_LINEUP_FORWARD to dataEvent!!.strHomeLineupForward,
-                        Favorite.AWAY_LINEUP_FORWARD to dataEvent!!.strAwayLineupForward,
-                        Favorite.HOME_LINEUP_SUBTITUTES to dataEvent!!.strHomeLineupSubstitutes,
-                        Favorite.AWAY_LINEUP_SUBTITUTES to dataEvent!!.strAwayLineupSubstitutes,
-                        Favorite.STR_DATE to dataEvent!!.dateEvent)
+                        Favorite.ID_EVENT to dataEvent?.idEvent,
+                        Favorite.HOME_TEAM_NAME to dataEvent?.strHomeTeam,
+                        Favorite.AWAY_TEAM_NAME to dataEvent?.strAwayTeam,
+                        Favorite.HOME_TEAM_SCORE to dataEvent?.intHomeScore,
+                        Favorite.AWAY_TEAM_SCORE to dataEvent?.intAwayScore,
+                        Favorite.HOME_GOAL_DETAIL to dataEvent?.strHomeGoalDetails,
+                        Favorite.AWAY_GOAL_DETAIL to dataEvent?.strAwayGoalDetails,
+                        Favorite.HOME_SHOTS to dataEvent?.intHomeShots,
+                        Favorite.AWAY_SHOTS to dataEvent?.intAwayShots,
+                        Favorite.HOME_LINEUP_GOALKEEPER to dataEvent?.strHomeLineupGoalkeeper,
+                        Favorite.AWAY_LINEUP_GOALKEEPER to dataEvent?.strAwayLineupGoalkeeper,
+                        Favorite.HOME_LINEUP_DEFENSE to dataEvent?.strHomeLineupDefense,
+                        Favorite.AWAY_LINEUP_DEFENSE to dataEvent?.strAwayLineupDefense,
+                        Favorite.HOME_LINEUP_MIDFIELD to dataEvent?.strHomeLineupMidfield,
+                        Favorite.AWAY_LINEUP_MIDFIELD to dataEvent?.strAwayLineupMidfield,
+                        Favorite.HOME_LINEUP_FORWARD to dataEvent?.strHomeLineupForward,
+                        Favorite.AWAY_LINEUP_FORWARD to dataEvent?.strAwayLineupForward,
+                        Favorite.HOME_LINEUP_SUBTITUTES to dataEvent?.strHomeLineupSubstitutes,
+                        Favorite.AWAY_LINEUP_SUBTITUTES to dataEvent?.strAwayLineupSubstitutes,
+                        Favorite.STR_DATE to dataEvent?.dateEvent)
             }
-            snackbar( nested_scroll,"Added to favorite").show()
+            snackbar( nested_scroll,R.string.add_favorite).show()
         } catch (e: SQLiteConstraintException){
             snackbar( nested_scroll,e.localizedMessage).show()
         }
@@ -142,13 +141,15 @@ class DetaillActivity:AppCompatActivity(), DetailActivityView {
     override fun showAllteam(dataAllteam: List<Team>?) {
 
         swpDetail.isRefreshing = false
-        for (i in dataAllteam!!.indices){
-            if(dataAllteam!![i].strTeam.equals(nameHomeClub)){
-                Glide.with(ivImageHomeScore).load(dataAllteam!![i].strTeamBadge).into(ivImageHomeScore)
-            }
+        if (dataAllteam != null) {
+            for (i in dataAllteam.indices){
+                if(dataAllteam[i].strTeam.equals(nameHomeClub)){
+                    Glide.with(ivImageHomeScore).load(dataAllteam[i].strTeamBadge).into(ivImageHomeScore)
+                }
 
-            if(dataAllteam!![i].strTeam.equals(nameAwayClub)){
-                Glide.with(ivImageAwayScore).load(dataAllteam!![i].strTeamBadge).into(ivImageAwayScore)
+                if(dataAllteam[i].strTeam.equals(nameAwayClub)){
+                    Glide.with(ivImageAwayScore).load(dataAllteam[i].strTeamBadge).into(ivImageAwayScore)
+                }
             }
         }
     }
@@ -186,7 +187,7 @@ class DetaillActivity:AppCompatActivity(), DetailActivityView {
                 delete(Favorite.TABLE_FAVORITE, "(ID_EVENT = {id})",
                         "id" to dataEvent!!.idEvent.toString())
             }
-            snackbar( nested_scroll,"Removed to favorite").show()
+            snackbar( nested_scroll,R.string.remove_favorite).show()
         } catch (e: SQLiteConstraintException){
             snackbar( nested_scroll,e.localizedMessage).show()
         }

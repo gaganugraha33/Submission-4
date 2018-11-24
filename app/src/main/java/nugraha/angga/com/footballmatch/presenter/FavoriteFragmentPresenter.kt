@@ -18,7 +18,6 @@ class FavoriteFragmentPresenter(private val view:FavoriteFragmentView,
             val favorite = result.parseList(classParser<Favorite>())
 
             view.hideLoading()
-            println("isinya manaaa cek dong"+favorite.size)
             view.showAllFavorite(favorite)
         }
     }

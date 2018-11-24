@@ -1,6 +1,22 @@
 <resources>
     <string name="app_name">Football Match</string>
-    <string name="prevmatch">Prev Match</string>
+    <string name="prev_match">Prev Match</string>
     <string name="favorites">Favorites</string>
-    <string name="nextmatch">Next Match</string>
+    <string name="next_match">Next Match</string>
+    <string name="remove_favorite">Removed to favorite</string>
+    <string name="add_favorite">Added to favorite</string>
+    <string name="tanggal">tanggal</string>
+    <string name="name_club_home">Name club home</string>
+    <string name="vs">vs</string>
+    <string name="name_club_away">Name club away</string>
+    <string name="name_goal">nama goal</string>
+    <string name="goals">Goals</string>
+    <string name="shots">Shots</string>
+    <string name="lineups">Lineups</string>
+    <string name="goal_keeper">Goal Keeper</string>
+    <string name="defense">Defense</string>
+    <string name="midfield">Midfield</string>
+    <string name="forward">Forward</string>
+    <string name="subtitutes">Subtitutes</string>
+    <string name="data_test">data test</string>
 </resources>

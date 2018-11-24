@@ -1,4 +1,4 @@
-package nugraha.angga.com.footballmatch.model.AllTeamLeagueModel
+package nugraha.angga.com.footballmatch.model.allTeamLeagueModel
 
 import java.io.Serializable
 import com.google.gson.annotations.Expose

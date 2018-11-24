@@ -14,15 +14,12 @@ import nugraha.angga.com.footballmatch.R
 import nugraha.angga.com.footballmatch.`interface`.MatchFragmentView
 import nugraha.angga.com.footballmatch.adapter.MatchAdapter
 import nugraha.angga.com.footballmatch.api.ServiceSportDBProvider
-import nugraha.angga.com.footballmatch.model.EventMatchModel.EventMatch
+import nugraha.angga.com.footballmatch.model.eventMatchModel.EventMatch
 import nugraha.angga.com.footballmatch.presenter.MatchFragmentPresenter
 import org.jetbrains.anko.support.v4.onRefresh
 import java.io.Serializable
 
 class LastMatchFragment :Fragment(), MatchFragmentView {
-
-
-
     private lateinit var matchfragmentPresenter:MatchFragmentPresenter
     private lateinit var matchAdapter: MatchAdapter
     private var lastMatch:MutableList<EventMatch> = mutableListOf()
@@ -62,10 +59,10 @@ class LastMatchFragment :Fragment(), MatchFragmentView {
     }
 
     override fun showMatchList(data: List<EventMatch>?) {
-        println("isi datana bosque ${data!!.size}")
+
         swpLayout.isRefreshing = false
         lastMatch.clear()
-        lastMatch.addAll(data)
+        data?.let { lastMatch.addAll(it) }
         matchAdapter.notifyDataSetChanged()
     }
 

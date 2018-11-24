@@ -1,16 +1,12 @@
 package nugraha.angga.com.footballmatch
 
-import com.google.gson.Gson
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import nugraha.angga.com.footballmatch.`interface`.MatchFragmentView
-import nugraha.angga.com.footballmatch.api.ServiceSportDBApi
 import nugraha.angga.com.footballmatch.api.SportDBRepository
-import nugraha.angga.com.footballmatch.model.EventMatchModel.EventMatch
-import nugraha.angga.com.footballmatch.model.EventMatchModel.EventMatchResponse
-import nugraha.angga.com.footballmatch.model.EventMatchModel.MatchFootbal
+import nugraha.angga.com.footballmatch.model.eventMatchModel.EventMatch
+import nugraha.angga.com.footballmatch.model.eventMatchModel.MatchFootbal
 import nugraha.angga.com.footballmatch.presenter.MatchFragmentPresenter
 import org.junit.Before
 import org.junit.Test
@@ -18,8 +14,6 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
-import org.junit.ClassRule
-
 
 
 class PresenterMatchTest {
@@ -47,7 +41,6 @@ class PresenterMatchTest {
     @Before
     fun setup(){
         MockitoAnnotations.initMocks(this)
-
     }
 
     @Test
@@ -60,7 +53,7 @@ class PresenterMatchTest {
         matchFragmentPresenter = MatchFragmentPresenter(view, compositeDisposable, apiRepositoryTest, Schedulers.trampoline(), Schedulers.trampoline())
         matchFragmentPresenter.getMatchList()
 
-        response?.events?.let { listEventMatch.addAll(it) }
+        response.events?.let { listEventMatch.addAll(it) }
 
         Mockito.verify(view).showLoading()
         Mockito.verify(view).hideLoading()
@@ -77,7 +70,7 @@ class PresenterMatchTest {
         matchFragmentPresenter = MatchFragmentPresenter(view, compositeDisposable, apiRepositoryTest, Schedulers.trampoline(), Schedulers.trampoline())
         matchFragmentPresenter.getNextMatchList()
 
-        response?.events?.let { listEventMatch.addAll(it) }
+        response.events?.let { listEventMatch.addAll(it) }
 
         Mockito.verify(view).showLoading()
         Mockito.verify(view).hideLoading()

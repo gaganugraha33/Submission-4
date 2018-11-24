@@ -1,8 +1,8 @@
 package nugraha.angga.com.footballmatch.api
 
 import io.reactivex.Observable
-import nugraha.angga.com.footballmatch.model.AllTeamLeagueModel.AllTeamLeague
-import nugraha.angga.com.footballmatch.model.EventMatchModel.MatchFootbal
+import nugraha.angga.com.footballmatch.model.allTeamLeagueModel.AllTeamLeague
+import nugraha.angga.com.footballmatch.model.eventMatchModel.MatchFootbal
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory

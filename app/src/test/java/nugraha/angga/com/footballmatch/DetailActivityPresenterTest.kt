@@ -4,14 +4,10 @@ import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import nugraha.angga.com.footballmatch.`interface`.DetailActivityView
-import nugraha.angga.com.footballmatch.`interface`.MatchFragmentView
 import nugraha.angga.com.footballmatch.api.SportDBRepository
-import nugraha.angga.com.footballmatch.model.AllTeamLeagueModel.AllTeamLeague
-import nugraha.angga.com.footballmatch.model.AllTeamLeagueModel.Team
-import nugraha.angga.com.footballmatch.model.EventMatchModel.EventMatch
-import nugraha.angga.com.footballmatch.model.EventMatchModel.MatchFootbal
+import nugraha.angga.com.footballmatch.model.allTeamLeagueModel.AllTeamLeague
+import nugraha.angga.com.footballmatch.model.allTeamLeagueModel.Team
 import nugraha.angga.com.footballmatch.presenter.DetailActivityPresenter
-import nugraha.angga.com.footballmatch.presenter.MatchFragmentPresenter
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -55,7 +51,7 @@ class DetailActivityPresenterTest {
         detailActivityPresenter = DetailActivityPresenter(view, compositeDisposable, apiRepositoryTest, Schedulers.trampoline(), Schedulers.trampoline())
         detailActivityPresenter.getAllTeamLeagueList()
 
-        response?.teams?.let { listTeam.addAll(it) }
+        response.teams?.let { listTeam.addAll(it) }
 
         Mockito.verify(view).showLoading()
         Mockito.verify(view).hideLoading()

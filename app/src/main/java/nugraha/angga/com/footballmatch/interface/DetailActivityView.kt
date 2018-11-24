@@ -1,6 +1,6 @@
 package nugraha.angga.com.footballmatch.`interface`
 
-import nugraha.angga.com.footballmatch.model.AllTeamLeagueModel.Team
+import nugraha.angga.com.footballmatch.model.allTeamLeagueModel.Team
 
 interface DetailActivityView {
     fun showLoading()

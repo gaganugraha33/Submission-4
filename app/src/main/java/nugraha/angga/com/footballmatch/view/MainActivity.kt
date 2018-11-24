@@ -12,12 +12,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val actionBar = supportActionBar
-        actionBar!!.elevation = 0F
-
-//        val myPageAdapter = MyPageAdapter(supportFragmentManager)
-//        viewpager_main.adapter = myPageAdapter
-//
-//        tabs_main.setupWithViewPager(viewpager_main)
+        actionBar?.elevation = 0F
 
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {

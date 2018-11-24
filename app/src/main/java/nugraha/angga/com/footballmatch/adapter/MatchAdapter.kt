@@ -9,11 +9,9 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import nugraha.angga.com.footballmatch.R
-import nugraha.angga.com.footballmatch.model.EventMatchModel.EventMatch
+import nugraha.angga.com.footballmatch.model.eventMatchModel.EventMatch
 import org.jetbrains.anko.*
-import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
 
 class MatchAdapter(private val lastMatch: List<EventMatch>, private val listener:(EventMatch) -> Unit): RecyclerView.Adapter<MatchViewHolder>() {
 
@@ -48,13 +46,12 @@ class MatchViewHolder(view: View):RecyclerView.ViewHolder(view){
     private var awayTeamText:TextView = view.find(R.id.away_team)
 
     fun bindItem(lastMatch: EventMatch, listener: (EventMatch) -> Unit){
-        println("cek isi tanggal ${lastMatch.strDate}")
-        dateMatchText!!.text = getDateWithServerTimeStamp(lastMatch.dateEvent.toString())
-        homeTeamText!!.text = lastMatch.strHomeTeam
-        homeScoreText!!.text = lastMatch.intHomeScore
-        vsText!!.text = "vs"
-        awayScoreText!!.text = lastMatch.intAwayScore
-        awayTeamText!!.text = lastMatch.strAwayTeam
+        dateMatchText?.text = getDateWithServerTimeStamp(lastMatch.dateEvent.toString())
+        homeTeamText?.text = lastMatch.strHomeTeam
+        homeScoreText?.text = lastMatch.intHomeScore
+        vsText?.text = "vs"
+        awayScoreText?.text = lastMatch.intAwayScore
+        awayTeamText?.text = lastMatch.strAwayTeam
 
         itemView.setOnClickListener {
             listener(lastMatch)

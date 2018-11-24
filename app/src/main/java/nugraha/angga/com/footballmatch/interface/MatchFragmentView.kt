@@ -1,7 +1,6 @@
 package nugraha.angga.com.footballmatch.`interface`
 
-import nugraha.angga.com.footballmatch.model.AllTeamLeagueModel.Team
-import nugraha.angga.com.footballmatch.model.EventMatchModel.EventMatch
+import nugraha.angga.com.footballmatch.model.eventMatchModel.EventMatch
 
 interface MatchFragmentView {
     fun showLoading()
