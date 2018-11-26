@@ -17,10 +17,10 @@ class MainActivity : AppCompatActivity() {
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.prev_match -> {
-                    loadPrevMatchFragment(savedInstanceState)
+                    loadMatchesFragment(savedInstanceState)
                 }
                 R.id.next_match  -> {
-                    loadNextMatchFragment(savedInstanceState)
+                    loadTeamFragment(savedInstanceState)
                 }
 
                 R.id.favorites  -> {
@@ -32,26 +32,33 @@ class MainActivity : AppCompatActivity() {
         bottom_navigation.selectedItemId = R.id.prev_match
     }
 
-    private fun loadPrevMatchFragment(savedInstanceState: Bundle?) {
+    private fun loadMatchesFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
+            val actionBar = supportActionBar
+            val matchesFragment:MatchesFragment = MatchesFragment.newInstance(supportFragmentManager)
+            actionBar!!.elevation = 0F
             supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.main_container, LastMatchFragment(), LastMatchFragment::class.java.simpleName)
+                    .replace(R.id.main_container, matchesFragment, MatchesFragment::class.java.simpleName)
+                    .detach(matchesFragment)
+                    .attach(matchesFragment)
                     .commit()
         }
     }
 
-    private fun loadNextMatchFragment(savedInstanceState: Bundle?) {
+    private fun loadTeamFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
+            val actionBar = supportActionBar
             supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.main_container, NextMatchFragment(), NextMatchFragment::class.java.simpleName)
+                    .replace(R.id.main_container, TeamsFragment(), TeamsFragment::class.java.simpleName)
                     .commit()
         }
     }
 
     private fun loadFavoriteFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
+            val actionBar = supportActionBar
             supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.main_container, FavoriteFragment(), FavoriteFragment::class.java.simpleName)

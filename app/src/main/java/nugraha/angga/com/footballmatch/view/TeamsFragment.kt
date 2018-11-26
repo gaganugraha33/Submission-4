@@ -11,20 +11,24 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.match_layout.*
 import nugraha.angga.com.footballmatch.R
+import nugraha.angga.com.footballmatch.`interface`.AllTeamFragmentView
 import nugraha.angga.com.footballmatch.`interface`.MatchFragmentView
+import nugraha.angga.com.footballmatch.adapter.AllTeamAdapter
 import nugraha.angga.com.footballmatch.adapter.MatchAdapter
 import nugraha.angga.com.footballmatch.api.ServiceSportDBProvider
+import nugraha.angga.com.footballmatch.model.allTeamLeagueModel.Team
 import nugraha.angga.com.footballmatch.model.eventMatchModel.EventMatch
 import nugraha.angga.com.footballmatch.presenter.MatchFragmentPresenter
+import nugraha.angga.com.footballmatch.presenter.TeamFragmentPresenter
 import org.jetbrains.anko.support.v4.onRefresh
 import java.io.Serializable
 
-class NextMatchFragment :Fragment(), MatchFragmentView {
+class TeamsFragment :Fragment(), AllTeamFragmentView {
 
-    private lateinit var matchfragmentPresenter:MatchFragmentPresenter
-    private lateinit var matchAdapter: MatchAdapter
-    private var nextMatch:MutableList<EventMatch> = mutableListOf()
 
+    private lateinit var teamFragmentPresenter: TeamFragmentPresenter
+    private lateinit var allTeamAdapter: AllTeamAdapter
+    private var allTeamList:MutableList<Team> = mutableListOf()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.match_layout, container, false)
@@ -33,22 +37,22 @@ class NextMatchFragment :Fragment(), MatchFragmentView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         rvMatch.layoutManager = LinearLayoutManager(context)
-        matchAdapter = MatchAdapter(nextMatch){
-            val intentDetail = Intent(context, DetaillActivity::class.java)
-            intentDetail.putExtra("data", it as Serializable)
-            startActivity(intentDetail)
+        allTeamAdapter = AllTeamAdapter(allTeamList){
+//            val intentDetail = Intent(context, DetaillActivity::class.java)
+//            intentDetail.putExtra("data", it as Serializable)
+//            startActivity(intentDetail)
         }
-        rvMatch.adapter = matchAdapter
+        rvMatch.adapter = allTeamAdapter
 
         val compositeDisposable: CompositeDisposable = CompositeDisposable()
-        val repository = ServiceSportDBProvider.providerNextMatchRepository()
+        val repository = ServiceSportDBProvider.providerLastMatchRepository()
 
-        matchfragmentPresenter = MatchFragmentPresenter(this, compositeDisposable, repository, AndroidSchedulers.mainThread(), Schedulers.io())
-        matchfragmentPresenter.getNextMatchList()
+        teamFragmentPresenter = TeamFragmentPresenter(this, compositeDisposable, repository, AndroidSchedulers.mainThread(),Schedulers.io())
+        teamFragmentPresenter.getAllTeamList()
 
 
         swpLayout.onRefresh {
-            matchfragmentPresenter.getNextMatchList()
+            teamFragmentPresenter.getAllTeamList()
         }
     }
 
@@ -60,12 +64,11 @@ class NextMatchFragment :Fragment(), MatchFragmentView {
         swpLayout.isRefreshing = false
     }
 
-    override fun showMatchList(data: List<EventMatch>?) {
+    override fun showListAllTeam(data: List<Team>?) {
         swpLayout.isRefreshing = false
-        nextMatch.clear()
-        data?.let { nextMatch.addAll(it) }
-        matchAdapter.notifyDataSetChanged()
+        allTeamList.clear()
+        data?.let { allTeamList.addAll(it) }
+        allTeamAdapter.notifyDataSetChanged()
     }
-
 
 }

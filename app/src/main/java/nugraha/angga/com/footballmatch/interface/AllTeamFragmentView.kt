@@ -1,0 +1,10 @@
+package nugraha.angga.com.footballmatch.`interface`
+
+import nugraha.angga.com.footballmatch.model.allTeamLeagueModel.AllTeamLeague
+import nugraha.angga.com.footballmatch.model.allTeamLeagueModel.Team
+
+interface AllTeamFragmentView {
+    fun showLoading()
+    fun hideLoading()
+    fun showListAllTeam(data:List<Team>?)
+}

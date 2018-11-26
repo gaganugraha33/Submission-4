@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Football Match</string>
-    <string name="prev_match">Prev Match</string>
+    <string name="prev_match">Matches</string>
     <string name="favorites">Favorites</string>
-    <string name="next_match">Next Match</string>
+    <string name="next_match">Teams</string>
     <string name="remove_favorite">Removed to favorite</string>
     <string name="add_favorite">Added to favorite</string>
     <string name="tanggal">tanggal</string>

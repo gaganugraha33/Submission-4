@@ -6,4 +6,6 @@
     <item name="away_score" type="id" />
     <item name="date_match" type="id" />
     <item name="vs" type="id" />
+    <item name="all_team" type="id">all_team</item>
+    <item name="team_badge" type="id">team_badge</item>
 </resources>
