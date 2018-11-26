@@ -4,6 +4,7 @@ import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import nugraha.angga.com.footballmatch.`interface`.AllTeamFragmentView
 import nugraha.angga.com.footballmatch.api.SportDBRepository
+import nugraha.angga.com.footballmatch.model.allLeagueModel.AllLeague
 
 
 class TeamFragmentPresenter(private val view:AllTeamFragmentView,
@@ -22,6 +23,23 @@ class TeamFragmentPresenter(private val view:AllTeamFragmentView,
                                 AllTeamLeague ->
                                 view.hideLoading()
                                 view.showListAllTeam(AllTeamLeague.teams)
+
+                            }, { error ->
+                                error.printStackTrace()
+                            })
+            )
+        }
+
+    fun getAllLeague(){
+            view.showLoading()
+            compositeDisposable.add(
+                    repository.allLeague()
+                            .observeOn(backgroundSchedulers)
+                            .subscribeOn(mainSchedulers)
+                            .subscribe ({
+                                AllLeague ->
+                                view.hideLoading()
+                                view.showListAllLeague(AllLeague.leagues)
 
                             }, { error ->
                                 error.printStackTrace()

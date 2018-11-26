@@ -1,6 +1,7 @@
 package nugraha.angga.com.footballmatch.api
 
 import io.reactivex.Observable
+import nugraha.angga.com.footballmatch.model.allLeagueModel.AllLeague
 import nugraha.angga.com.footballmatch.model.allTeamLeagueModel.AllTeamLeague
 import nugraha.angga.com.footballmatch.model.eventMatchModel.MatchFootbal
 import retrofit2.Retrofit
@@ -19,6 +20,9 @@ interface ServiceSportDBApi {
 
     @GET("/api/v1/json/1/lookup_all_teams.php")
     fun getAllTeamLeague(@Query("id") code_league: String = "4331"): Observable<AllTeamLeague>
+
+    @GET("/api/v1/json/1/all_leagues.php")
+    fun getAllLeague(): Observable<AllLeague>
 
     companion object Factory {
         fun create(): ServiceSportDBApi {
