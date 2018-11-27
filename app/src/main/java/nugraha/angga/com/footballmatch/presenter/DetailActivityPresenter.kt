@@ -19,7 +19,7 @@ class DetailActivityPresenter(private val view:DetailActivityView,
     fun getAllTeamLeagueList(){
             view.showLoading()
             compositeDisposable.add(
-                    repository.allTeamReq()
+                    repository.allTeamReq("4331")
                             .observeOn(backgroundSchedulers)
                             .subscribeOn(mainSchedulers)
                             .subscribe ({

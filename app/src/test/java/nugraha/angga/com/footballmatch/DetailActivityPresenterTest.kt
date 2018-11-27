@@ -45,7 +45,7 @@ class DetailActivityPresenterTest {
     fun getAllTeamLeagueList(){
         val listTeam: MutableList<Team> = mutableListOf()
 
-        Mockito.`when`(apiRepositoryTest.allTeamReq()
+        Mockito.`when`(apiRepositoryTest.allTeamReq("4331")
         ).thenReturn(Observable.just(response))
 
         detailActivityPresenter = DetailActivityPresenter(view, compositeDisposable, apiRepositoryTest, Schedulers.trampoline(), Schedulers.trampoline())

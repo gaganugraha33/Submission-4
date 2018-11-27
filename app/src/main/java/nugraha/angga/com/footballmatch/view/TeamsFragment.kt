@@ -1,10 +1,11 @@
 package nugraha.angga.com.footballmatch.view
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.SearchView;
+import android.view.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -21,12 +22,10 @@ import android.widget.ArrayAdapter
 import nugraha.angga.com.footballmatch.model.allLeagueModel.League
 
 
-class TeamsFragment :Fragment(), AllTeamFragmentView, AdapterView.OnItemSelectedListener {
-
-
-
+class TeamsFragment :Fragment(), AllTeamFragmentView, AdapterView.OnItemSelectedListener{
     private lateinit var teamFragmentPresenter: TeamFragmentPresenter
     private lateinit var allTeamAdapter: AllTeamAdapter
+    private lateinit var codeLeagueName: String
     private var allTeamList:MutableList<Team> = mutableListOf()
     private var allLeagueList:MutableList<League> = mutableListOf()
     var list_of_items:ArrayList<String> = ArrayList()
@@ -35,10 +34,15 @@ class TeamsFragment :Fragment(), AllTeamFragmentView, AdapterView.OnItemSelected
         return inflater?.inflate(R.layout.match_layout, container, false)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         rvMatch.layoutManager = LinearLayoutManager(context)
-
+        codeLeagueName = "4328"
 
 
         allTeamAdapter = AllTeamAdapter(allTeamList){
@@ -49,16 +53,16 @@ class TeamsFragment :Fragment(), AllTeamFragmentView, AdapterView.OnItemSelected
         rvMatch.adapter = allTeamAdapter
 
         val compositeDisposable: CompositeDisposable = CompositeDisposable()
-        val repository = ServiceSportDBProvider.providerLastMatchRepository()
+        val repository = ServiceSportDBProvider.providerTeamRepository()
 
         teamFragmentPresenter = TeamFragmentPresenter(this, compositeDisposable, repository, AndroidSchedulers.mainThread(),Schedulers.io())
-        teamFragmentPresenter.getAllTeamList()
         teamFragmentPresenter.getAllLeague()
+
 
 
         swpLayout.onRefresh {
             teamFragmentPresenter.getAllLeague()
-            teamFragmentPresenter.getAllTeamList()
+            teamFragmentPresenter.getAllTeamList(codeLeagueName)
         }
     }
 
@@ -78,11 +82,17 @@ class TeamsFragment :Fragment(), AllTeamFragmentView, AdapterView.OnItemSelected
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+        if (list_of_items != null) {
+               if (list_of_items[position].equals(allLeagueList[position].strLeague.toString())){
+                   teamFragmentPresenter.getAllTeamList(allLeagueList[position].idLeague.toString())
+                   codeLeagueName = list_of_items[position]
+               }
+
+        }
     }
 
     override fun showListAllLeague(data: List<League>?) {
@@ -100,6 +110,47 @@ class TeamsFragment :Fragment(), AllTeamFragmentView, AdapterView.OnItemSelected
         var adapterSpinner = ArrayAdapter(context, android.R.layout.simple_spinner_item, list_of_items)
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner_teams.setAdapter(adapterSpinner)
+
+        spinner_teams.setOnItemSelectedListener(this)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        activity?.menuInflater?.inflate(R.menu.menu_search, menu)
+        val searchItem = menu?.findItem(R.id.action_search)
+        val searchView = searchItem?.getActionView() as SearchView
+        searchView.queryHint = "Find Team"
+        val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        searchView.setSearchableInfo(searchManager
+                .getSearchableInfo(activity!!.componentName))
+
+        val queryTextListener = object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                if (query.equals("")){
+                    spinner_teams.visibility  = View.VISIBLE
+                    teamFragmentPresenter.getAllLeague()
+                    teamFragmentPresenter.getAllTeamList(codeLeagueName)
+                }else{
+                    spinner_teams.visibility  = View.GONE
+                    teamFragmentPresenter.getSearchTeamList(query)
+                }
+                searchView.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(query: String): Boolean {
+                if (query.equals("")){
+                    spinner_teams.visibility  = View.VISIBLE
+                    teamFragmentPresenter.getAllLeague()
+                    teamFragmentPresenter.getAllTeamList(codeLeagueName)
+                }else{
+                    spinner_teams.visibility  = View.GONE
+                    teamFragmentPresenter.getSearchTeamList(query)
+                }
+                return true
+            }
+        }
+        searchView.setOnQueryTextListener(queryTextListener)
     }
 
 }

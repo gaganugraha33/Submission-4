@@ -13,10 +13,27 @@ class TeamFragmentPresenter(private val view:AllTeamFragmentView,
                             private val backgroundSchedulers: Scheduler,
                             private val mainSchedulers: Scheduler) {
 
-        fun getAllTeamList(){
+        fun getAllTeamList(codeLeague:String){
             view.showLoading()
             compositeDisposable.add(
-                    repository.allTeamReq()
+                    repository.allTeamReq(codeLeague)
+                            .observeOn(backgroundSchedulers)
+                            .subscribeOn(mainSchedulers)
+                            .subscribe ({
+                                AllTeamLeague ->
+                                view.hideLoading()
+                                view.showListAllTeam(AllTeamLeague.teams)
+
+                            }, { error ->
+                                error.printStackTrace()
+                            })
+            )
+        }
+
+      fun getSearchTeamList(nameTeam:String){
+            view.showLoading()
+            compositeDisposable.add(
+                    repository.allTeamSearchReq(nameTeam)
                             .observeOn(backgroundSchedulers)
                             .subscribeOn(mainSchedulers)
                             .subscribe ({

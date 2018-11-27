@@ -15,8 +15,12 @@ class SportDBRepository(val apiService:ServiceSportDBApi) {
         return apiService.getNextMatch()
     }
 
-    fun allTeamReq():Observable<AllTeamLeague>{
-        return apiService.getAllTeamLeague()
+    fun allTeamReq(codeLeague:String):Observable<AllTeamLeague>{
+        return apiService.getAllTeamLeague(codeLeague)
+    }
+
+    fun allTeamSearchReq(name_team:String):Observable<AllTeamLeague>{
+        return apiService.getSearchTeamLeague(name_team)
     }
 
     fun allLeague():Observable<AllLeague>{

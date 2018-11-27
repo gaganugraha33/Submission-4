@@ -19,7 +19,10 @@ interface ServiceSportDBApi {
     fun getNextMatch(@Query("id") code_league: String = "4331"): Observable<MatchFootbal>
 
     @GET("/api/v1/json/1/lookup_all_teams.php")
-    fun getAllTeamLeague(@Query("id") code_league: String = "4331"): Observable<AllTeamLeague>
+    fun getAllTeamLeague(@Query("id") code_league: String): Observable<AllTeamLeague>
+
+    @GET("/api/v1/json/1/searchteams.php")
+    fun getSearchTeamLeague(@Query("t") name_team: String): Observable<AllTeamLeague>
 
     @GET("/api/v1/json/1/all_leagues.php")
     fun getAllLeague(): Observable<AllLeague>
