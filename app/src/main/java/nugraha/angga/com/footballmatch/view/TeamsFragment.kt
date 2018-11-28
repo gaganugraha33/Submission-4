@@ -1,6 +1,7 @@
 package nugraha.angga.com.footballmatch.view
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -20,6 +21,7 @@ import org.jetbrains.anko.support.v4.onRefresh
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import nugraha.angga.com.footballmatch.model.allLeagueModel.League
+import java.io.Serializable
 
 
 class TeamsFragment :Fragment(), AllTeamFragmentView, AdapterView.OnItemSelectedListener{
@@ -46,9 +48,9 @@ class TeamsFragment :Fragment(), AllTeamFragmentView, AdapterView.OnItemSelected
 
 
         allTeamAdapter = AllTeamAdapter(allTeamList){
-//            val intentDetail = Intent(context, DetaillActivity::class.java)
-//            intentDetail.putExtra("data", it as Serializable)
-//            startActivity(intentDetail)
+            val intentDetail = Intent(context, TeamDetailActivity::class.java)
+            intentDetail.putExtra("data", it as Serializable)
+            startActivity(intentDetail)
         }
         rvMatch.adapter = allTeamAdapter
 

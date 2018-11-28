@@ -12,7 +12,12 @@ object ServiceSportDBProvider {
     fun providerAllTeamLeagueTeamRepository():SportDBRepository{
         return SportDBRepository(ServiceSportDBApi.Factory.create())
     }
+
     fun providerTeamRepository():SportDBRepository{
+        return SportDBRepository(ServiceSportDBApi.Factory.create())
+    }
+
+    fun providerPlayerRepository():SportDBRepository{
         return SportDBRepository(ServiceSportDBApi.Factory.create())
     }
 }

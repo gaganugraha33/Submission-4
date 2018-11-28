@@ -4,6 +4,7 @@ import io.reactivex.Observable
 import nugraha.angga.com.footballmatch.model.allLeagueModel.AllLeague
 import nugraha.angga.com.footballmatch.model.allTeamLeagueModel.AllTeamLeague
 import nugraha.angga.com.footballmatch.model.eventMatchModel.MatchFootbal
+import nugraha.angga.com.footballmatch.model.playerModel.PlayerData
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,6 +24,9 @@ interface ServiceSportDBApi {
 
     @GET("/api/v1/json/1/searchteams.php")
     fun getSearchTeamLeague(@Query("t") name_team: String): Observable<AllTeamLeague>
+
+    @GET("/api/v1/json/1/searchplayers.php")
+    fun getPlayerList(@Query("t") nameClub: String): Observable<PlayerData>
 
     @GET("/api/v1/json/1/all_leagues.php")
     fun getAllLeague(): Observable<AllLeague>

@@ -20,6 +20,9 @@
         </activity>
         <activity android:name=".view.DetaillActivity"
             android:label="Match Detail"></activity>
+        <activity android:name=".view.TeamDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label=""></activity>
     </application>
 
 </manifest>

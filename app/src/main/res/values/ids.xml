@@ -8,4 +8,7 @@
     <item name="vs" type="id" />
     <item name="all_team" type="id">all_team</item>
     <item name="team_badge" type="id">team_badge</item>
+    <item name="name_player" type="id">name_player</item>
+    <item name="position_player" type="id">position_player</item>
+    <item name="player_image" type="id">player_image</item>
 </resources>

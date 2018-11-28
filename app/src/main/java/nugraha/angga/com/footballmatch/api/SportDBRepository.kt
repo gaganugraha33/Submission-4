@@ -3,7 +3,9 @@ package nugraha.angga.com.footballmatch.api
 import io.reactivex.Observable
 import nugraha.angga.com.footballmatch.model.allLeagueModel.AllLeague
 import nugraha.angga.com.footballmatch.model.allTeamLeagueModel.AllTeamLeague
+import nugraha.angga.com.footballmatch.model.allTeamLeagueModel.Team
 import nugraha.angga.com.footballmatch.model.eventMatchModel.MatchFootbal
+import nugraha.angga.com.footballmatch.model.playerModel.PlayerData
 
 class SportDBRepository(val apiService:ServiceSportDBApi) {
 
@@ -25,6 +27,10 @@ class SportDBRepository(val apiService:ServiceSportDBApi) {
 
     fun allLeague():Observable<AllLeague>{
         return apiService.getAllLeague()
+    }
+
+    fun allPlayer(nameClub:String):Observable<PlayerData>{
+        return apiService.getPlayerList(nameClub)
     }
 
 }
