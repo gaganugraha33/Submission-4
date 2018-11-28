@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:id="@+id/img_player"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_marginBottom="5dp"
+            android:scaleType="centerCrop"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Weight (Kg)"
+                android:textColor="@color/gray"
+                android:textSize="20sp"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Height (m)"
+                android:gravity="center"
+                android:textColor="@color/gray"
+                android:textSize="20sp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/tvWeight"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="65.76"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="40sp"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/tvHeight"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="1.68"
+                android:gravity="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="40sp"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Forward"
+            android:textSize="20sp"
+            android:padding="5dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:gravity="center"
+            />
+
+        <View
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white_transparent"
+            />
+
+        <TextView
+            android:layout_margin="13dp"
+            android:id="@+id/tvDescPlayer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="asdasdasdasd"
+            android:textColor="@color/gray"
+            android:textSize="18sp"
+            />
+
+    </LinearLayout>
+
+</ScrollView>

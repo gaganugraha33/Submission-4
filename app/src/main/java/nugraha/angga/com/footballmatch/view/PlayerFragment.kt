@@ -1,4 +1,5 @@
 package nugraha.angga.com.footballmatch.view
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -8,7 +9,6 @@ import android.view.ViewGroup
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.match_layout.*
 import kotlinx.android.synthetic.main.player_layout.*
 import nugraha.angga.com.footballmatch.R
 import nugraha.angga.com.footballmatch.`interface`.PlayerFragmentView
@@ -16,6 +16,8 @@ import nugraha.angga.com.footballmatch.adapter.PlayerAdapter
 import nugraha.angga.com.footballmatch.api.ServiceSportDBProvider
 import nugraha.angga.com.footballmatch.model.playerModel.Player
 import nugraha.angga.com.footballmatch.presenter.PlayerFragmentPresenter
+import org.jetbrains.anko.support.v4.onRefresh
+import java.io.Serializable
 
 class PlayerFragment :Fragment() , PlayerFragmentView{
     private lateinit var playerFragmentPresenter:PlayerFragmentPresenter
@@ -40,9 +42,9 @@ class PlayerFragment :Fragment() , PlayerFragmentView{
         super.onViewCreated(view, savedInstanceState)
         rvPlayer.layoutManager = LinearLayoutManager(context)
         playerAdapter = PlayerAdapter(playerData){
-//            val intentDetail = Intent(context, DetaillActivity::class.java)
-//            intentDetail.putExtra("data", it as Serializable)
-//            startActivity(intentDetail)
+            val intentDetail = Intent(context, PlayerDetailActivity::class.java)
+            intentDetail.putExtra("data", it as Serializable)
+            startActivity(intentDetail)
         }
         rvPlayer.adapter = playerAdapter
 
@@ -52,6 +54,10 @@ class PlayerFragment :Fragment() , PlayerFragmentView{
 
         playerFragmentPresenter = PlayerFragmentPresenter(this, compositeDisposable, repository, AndroidSchedulers.mainThread(), Schedulers.io())
         playerFragmentPresenter.getPlayerList(nameClubPlayer.toString())
+
+        swp_player.onRefresh {
+            playerFragmentPresenter.getPlayerList(nameClubPlayer.toString())
+        }
 
     }
 
@@ -68,7 +74,6 @@ class PlayerFragment :Fragment() , PlayerFragmentView{
 
     override fun showLoading() {
         swp_player.isRefreshing = false
-
     }
 
 }
