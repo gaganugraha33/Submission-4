@@ -19,4 +19,6 @@
     <string name="forward">Forward</string>
     <string name="subtitutes">Subtitutes</string>
     <string name="data_test">data test</string>
+    <string name="type_last_match">type last match</string>
+    <string name="type_next_match">type next match</string>
 </resources>

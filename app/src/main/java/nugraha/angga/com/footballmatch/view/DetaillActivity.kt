@@ -35,6 +35,7 @@ class DetaillActivity:AppCompatActivity(), DetailActivityView {
     private var isFavorite: Boolean = false
     private var dataEvent:EventMatch? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail_activity_layout)
@@ -83,10 +84,10 @@ class DetaillActivity:AppCompatActivity(), DetailActivityView {
         val repository = ServiceSportDBProvider.providerAllTeamLeagueTeamRepository()
 
         detailActivityPresenter = DetailActivityPresenter(this, compositeDisposable, repository, AndroidSchedulers.mainThread(), Schedulers.io())
-        detailActivityPresenter.getAllTeamLeagueList()
+        detailActivityPresenter.getAllTeamLeagueList(dataEvent?.idLeague.toString())
 
         swpDetail.onRefresh {
-            detailActivityPresenter.getAllTeamLeagueList()
+            detailActivityPresenter.getAllTeamLeagueList(dataEvent?.idLeague.toString())
         }
     }
 

@@ -52,7 +52,7 @@ class NextMatchFragment :Fragment(), MatchFragmentView, AdapterView.OnItemSelect
         super.onViewCreated(view, savedInstanceState)
         codeLeagueName = "4328"
         rvMatch.layoutManager = LinearLayoutManager(context)
-        matchAdapter = MatchAdapter(nextMatch){
+        matchAdapter = MatchAdapter(nextMatch, context!!.getString(R.string.type_next_match), context!!){
             val intentDetail = Intent(context, DetaillActivity::class.java)
             intentDetail.putExtra("data", it as Serializable)
             startActivity(intentDetail)
@@ -85,7 +85,7 @@ class NextMatchFragment :Fragment(), MatchFragmentView, AdapterView.OnItemSelect
         nextMatch.clear()
         if (data != null) {
             for (i in data.indices){
-                if (data[i].intAwayScore == null || data[i].intAwayScore.toString().equals("")){
+                if (data[i].intAwayScore == null || data[i].intAwayScore.toString().equals("") || data[i].intAwayScore.toString().equals("null")){
                     nextMatch.add(data[i])
                 }
             }

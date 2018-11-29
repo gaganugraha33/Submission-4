@@ -29,7 +29,7 @@ class FavoriteFragment : Fragment(), FavoriteFragmentView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         rvMatch.layoutManager = LinearLayoutManager(context)
-        matchAdapter = MatchAdapter(favorites){
+        matchAdapter = MatchAdapter(favorites, context!!.getString(R.string.type_last_match), context!!){
             val intentDetail = Intent(context, DetaillActivity::class.java)
             intentDetail.putExtra("data", it as Serializable)
             startActivity(intentDetail)
