@@ -12,4 +12,5 @@
     <item name="position_player" type="id">position_player</item>
     <item name="player_image" type="id">player_image</item>
     <item name="bell" type="id">bell</item>
+    <item name="date_clock" type="id">date_clock</item>
 </resources>

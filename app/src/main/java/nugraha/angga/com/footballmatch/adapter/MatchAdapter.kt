@@ -19,6 +19,7 @@ import nugraha.angga.com.footballmatch.model.eventMatchModel.EventMatch
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 import java.text.SimpleDateFormat
+import java.util.*
 
 class MatchAdapter(private val lastMatch: List<EventMatch>,private val type:String, private val context: Context,private val listener:(EventMatch) -> Unit): RecyclerView.Adapter<MatchViewHolder>() {
 
@@ -44,8 +45,17 @@ fun getDateWithServerTimeStamp(date:String): String {
 
 }
 
+fun formatGMTMatch(dateMatch: String?, timeMatch: String?): Date? {
+    val FORMAT_24_HOURS = "yyyy-MM-dd HH:mm:ss"
+    val formatterMatch = SimpleDateFormat(FORMAT_24_HOURS)
+    formatterMatch.timeZone = TimeZone.getTimeZone("UTC")
+    val dateTimeMatch = "$dateMatch $timeMatch"
+    return formatterMatch.parse(dateTimeMatch)
+}
+
 class MatchViewHolder(view: View):RecyclerView.ViewHolder(view){
     private var dateMatchText:TextView = view.find(R.id.date_match)
+    private var clockText:TextView = view.find(R.id.date_clock)
     private var homeTeamText:TextView = view.find(R.id.home_team)
     private var homeScoreText:TextView = view.find(R.id.home_score)
     private var vsText:TextView = view.find(R.id.vs)
@@ -54,18 +64,20 @@ class MatchViewHolder(view: View):RecyclerView.ViewHolder(view){
     private val bellImage: ImageView = view.find(R.id.bell)
 
     fun bindItem(lastMatch: EventMatch, type:String, context: Context ,listener: (EventMatch) -> Unit){
-        println("isinya bos tipe : "+type+" mana euy : "+context.getString(R.string.type_last_match))
         if (type.equals(context.getString(R.string.type_last_match))){
-            println("mashoookkk sama")
             bellImage.visibility = View.GONE
         }else{
-            println("mashoookkk beda")
             bellImage.visibility = View.VISIBLE
             Glide.with(bellImage).load(R.drawable.ic_bell).into(bellImage)
             bellImage.setOnClickListener({ v -> context.toast("Hello") })
         }
 
+        val dateTimeMatch = formatGMTMatch(lastMatch.dateEvent, lastMatch.strTime)
+        val clockMatch = SimpleDateFormat("HH:mm", Locale.getDefault()).format(dateTimeMatch)
+        clockText?.text = clockMatch
+
         dateMatchText?.text = getDateWithServerTimeStamp(lastMatch.dateEvent.toString())
+
         homeTeamText?.text = lastMatch.strHomeTeam
         if(lastMatch.intHomeScore != null){
             homeScoreText?.text = lastMatch.intHomeScore.toString()
@@ -132,8 +144,16 @@ class MatchUI:AnkoComponent<ViewGroup>{
                        }
 
                         textView{
-                            padding = dip(16)
+                            padding = dip(6)
                             id = R.id.date_match
+                            textSize = 16f
+                            gravity = Gravity.CENTER
+                            textColor = ContextCompat.getColor(ctx, R.color.colorPrimary)
+                        }.lparams(width = matchParent)
+
+                        textView{
+                            padding = dip(6)
+                            id = R.id.date_clock
                             textSize = 16f
                             gravity = Gravity.CENTER
                             textColor = ContextCompat.getColor(ctx, R.color.colorPrimary)
