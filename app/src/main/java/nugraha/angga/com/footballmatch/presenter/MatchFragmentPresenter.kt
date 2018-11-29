@@ -14,10 +14,10 @@ class MatchFragmentPresenter(private val view:MatchFragmentView,
                              private val backgroundSchedulers: Scheduler,
                              private val mainSchedulers: Scheduler) {
 
-        fun getMatchList(){
+        fun getMatchList(codeLeague:String){
             view.showLoading()
             compositeDisposable.add(
-                    repository.lastMatchReq()
+                    repository.lastMatchReq(codeLeague)
                             .observeOn(backgroundSchedulers)
                             .subscribeOn(mainSchedulers)
                             .subscribe ({
@@ -31,22 +31,54 @@ class MatchFragmentPresenter(private val view:MatchFragmentView,
             )
         }
 
-    fun getNextMatchList(){
+    fun getNextMatchList(codeLeague:String){
             view.showLoading()
             compositeDisposable.add(
-                    repository.nextMatchReq()
+                    repository.nextMatchReq(codeLeague)
                             .observeOn(backgroundSchedulers)
                             .subscribeOn(mainSchedulers)
                             .subscribe ({
                                 EventMatch ->
-
                                 view.hideLoading()
                                 view.showMatchList(EventMatch.events)
-
                             }, { error ->
                                 error.printStackTrace()
                             })
             )
         }
+
+    fun getSearchMatchList(match:String){
+            view.showLoading()
+            compositeDisposable.add(
+                    repository.searchEvent(match)
+                            .observeOn(backgroundSchedulers)
+                            .subscribeOn(mainSchedulers)
+                            .subscribe ({
+                                EventMatch ->
+                                view.hideLoading()
+                                view.showMatchList(EventMatch.event)
+                            }, { error ->
+                                error.printStackTrace()
+                            })
+            )
+        }
+
+    fun getAllLeague(){
+        view.showLoading()
+        compositeDisposable.add(
+                repository.allLeague()
+                        .observeOn(backgroundSchedulers)
+                        .subscribeOn(mainSchedulers)
+                        .subscribe ({
+                            AllLeague ->
+                            view.hideLoading()
+                            view.showListAllLeague(AllLeague.leagues)
+                        }, { error ->
+                            error.printStackTrace()
+                        })
+        )
+    }
+
+
 
 }

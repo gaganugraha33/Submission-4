@@ -23,7 +23,6 @@ class TeamFragmentPresenter(private val view:AllTeamFragmentView,
                                 AllTeamLeague ->
                                 view.hideLoading()
                                 view.showListAllTeam(AllTeamLeague.teams)
-
                             }, { error ->
                                 error.printStackTrace()
                             })
@@ -40,7 +39,6 @@ class TeamFragmentPresenter(private val view:AllTeamFragmentView,
                                 AllTeamLeague ->
                                 view.hideLoading()
                                 view.showListAllTeam(AllTeamLeague.teams)
-
                             }, { error ->
                                 error.printStackTrace()
                             })
@@ -57,7 +55,6 @@ class TeamFragmentPresenter(private val view:AllTeamFragmentView,
                                 AllLeague ->
                                 view.hideLoading()
                                 view.showListAllLeague(AllLeague.leagues)
-
                             }, { error ->
                                 error.printStackTrace()
                             })

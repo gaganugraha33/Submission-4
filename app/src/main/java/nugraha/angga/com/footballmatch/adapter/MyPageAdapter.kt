@@ -12,14 +12,15 @@ class MyPageAdapter(fm:FragmentManager):FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> {
-                LastMatchFragment()
+                LastMatchFragment.newInstance()
             }
-            1 -> NextMatchFragment()
+            1 -> NextMatchFragment.newInstance()
             else -> {
                 return NextMatchFragment()
             }
         }
     }
+
 
     override fun getCount(): Int {
        return 2

@@ -40,8 +40,6 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.main_container, matchesFragment, MatchesFragment::class.java.simpleName)
-                    .detach(matchesFragment)
-                    .attach(matchesFragment)
                     .commit()
         }
     }

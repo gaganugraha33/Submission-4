@@ -3,18 +3,22 @@ package nugraha.angga.com.footballmatch.api
 import io.reactivex.Observable
 import nugraha.angga.com.footballmatch.model.allLeagueModel.AllLeague
 import nugraha.angga.com.footballmatch.model.allTeamLeagueModel.AllTeamLeague
-import nugraha.angga.com.footballmatch.model.allTeamLeagueModel.Team
 import nugraha.angga.com.footballmatch.model.eventMatchModel.MatchFootbal
+import nugraha.angga.com.footballmatch.model.eventMatchModel.MatchFootbalSearch
 import nugraha.angga.com.footballmatch.model.playerModel.PlayerData
 
 class SportDBRepository(val apiService:ServiceSportDBApi) {
 
-    fun lastMatchReq():Observable<MatchFootbal>{
-        return apiService.getLastMatch()
+    fun lastMatchReq(codeLeague: String):Observable<MatchFootbal>{
+        return apiService.getLastMatch(codeLeague)
     }
 
-    fun nextMatchReq():Observable<MatchFootbal>{
-        return apiService.getNextMatch()
+    fun nextMatchReq(codeLeague: String):Observable<MatchFootbal>{
+        return apiService.getNextMatch(codeLeague)
+    }
+
+    fun searchEvent(match:String):Observable<MatchFootbalSearch>{
+        return apiService.getSearchEvent(match)
     }
 
     fun allTeamReq(codeLeague:String):Observable<AllTeamLeague>{
@@ -32,5 +36,7 @@ class SportDBRepository(val apiService:ServiceSportDBApi) {
     fun allPlayer(nameClub:String):Observable<PlayerData>{
         return apiService.getPlayerList(nameClub)
     }
+
+
 
 }

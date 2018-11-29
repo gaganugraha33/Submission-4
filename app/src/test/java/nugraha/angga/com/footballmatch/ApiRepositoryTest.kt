@@ -8,21 +8,21 @@ class ApiRepositoryTest {
     @Test
     fun testLastMatchRequest(){
         val apiRepository = Mockito.mock(ServiceSportDBApi::class.java)
-        apiRepository.getLastMatch()
-        Mockito.verify(apiRepository).getLastMatch()
+        apiRepository.getLastMatch("4328")
+        Mockito.verify(apiRepository).getLastMatch("4328")
     }
 
     @Test
     fun testNextMatchRequest(){
         val apiRepository = Mockito.mock(ServiceSportDBApi::class.java)
-        apiRepository.getNextMatch()
-        Mockito.verify(apiRepository).getNextMatch()
+        apiRepository.getNextMatch("4328")
+        Mockito.verify(apiRepository).getNextMatch("4328")
     }
 
     @Test
     fun testAllTeamLeague(){
         val apiRepository = Mockito.mock(ServiceSportDBApi::class.java)
-        apiRepository.getAllTeamLeague()
-        Mockito.verify(apiRepository).getAllTeamLeague()
+        apiRepository.getAllTeamLeague("4328")
+        Mockito.verify(apiRepository).getAllTeamLeague("4328")
     }
 }

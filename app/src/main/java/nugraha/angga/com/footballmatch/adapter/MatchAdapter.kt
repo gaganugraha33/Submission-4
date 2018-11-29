@@ -48,9 +48,20 @@ class MatchViewHolder(view: View):RecyclerView.ViewHolder(view){
     fun bindItem(lastMatch: EventMatch, listener: (EventMatch) -> Unit){
         dateMatchText?.text = getDateWithServerTimeStamp(lastMatch.dateEvent.toString())
         homeTeamText?.text = lastMatch.strHomeTeam
-        homeScoreText?.text = lastMatch.intHomeScore
+        if(lastMatch.intHomeScore != null){
+            homeScoreText?.text = lastMatch.intHomeScore.toString()
+        }else{
+            homeScoreText?.text = ""
+        }
+
+        if(lastMatch.intAwayScore != null){
+            awayScoreText?.text = lastMatch.intAwayScore.toString()
+        }else{
+            awayScoreText?.text = ""
+        }
+
         vsText?.text = "vs"
-        awayScoreText?.text = lastMatch.intAwayScore
+
         awayTeamText?.text = lastMatch.strAwayTeam
 
         itemView.setOnClickListener {

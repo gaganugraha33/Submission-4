@@ -52,8 +52,18 @@ class DetaillActivity:AppCompatActivity(), DetailActivityView {
         tvTanggal.text = getDateWithServerTimeStamp(dataEvent!!.dateEvent.toString())
         tvNameHomeClub.text = dataEvent?.strHomeTeam
         tvNameAwayClub.text = dataEvent?.strAwayTeam
-        tvScoreHome.text = dataEvent?.intHomeScore
-        tvScoreAway.text = dataEvent?.intAwayScore
+        if (dataEvent?.intHomeScore.toString() != null){
+            tvScoreHome.text = dataEvent?.intHomeScore
+        }else{
+            tvScoreHome.text = ""
+        }
+
+        if (dataEvent?.intAwayScore != null){
+            tvScoreAway.text = dataEvent?.intAwayScore
+        }else{
+            tvScoreAway.text = ""
+        }
+
         tvGoalHomeName.text = dataEvent?.strHomeGoalDetails
         tvGoalAwayName.text = dataEvent?.strAwayGoalDetails
         tvScoreShotHome.text = dataEvent?.intHomeShots

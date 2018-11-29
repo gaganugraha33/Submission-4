@@ -4,6 +4,7 @@ import io.reactivex.Observable
 import nugraha.angga.com.footballmatch.model.allLeagueModel.AllLeague
 import nugraha.angga.com.footballmatch.model.allTeamLeagueModel.AllTeamLeague
 import nugraha.angga.com.footballmatch.model.eventMatchModel.MatchFootbal
+import nugraha.angga.com.footballmatch.model.eventMatchModel.MatchFootbalSearch
 import nugraha.angga.com.footballmatch.model.playerModel.PlayerData
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -14,10 +15,13 @@ import retrofit2.http.Query
 interface ServiceSportDBApi {
 
     @GET("/api/v1/json/1/eventspastleague.php")
-    fun getLastMatch(@Query("id") code_league: String = "4331"): Observable<MatchFootbal>
+    fun getLastMatch(@Query("id") code_league: String): Observable<MatchFootbal>
 
     @GET("/api/v1/json/1/eventsnextleague.php")
-    fun getNextMatch(@Query("id") code_league: String = "4331"): Observable<MatchFootbal>
+    fun getNextMatch(@Query("id") code_league: String): Observable<MatchFootbal>
+
+    @GET("/api/v1/json/1/searchevents.php")
+    fun getSearchEvent(@Query("e") match: String): Observable<MatchFootbalSearch>
 
     @GET("/api/v1/json/1/lookup_all_teams.php")
     fun getAllTeamLeague(@Query("id") code_league: String): Observable<AllTeamLeague>
