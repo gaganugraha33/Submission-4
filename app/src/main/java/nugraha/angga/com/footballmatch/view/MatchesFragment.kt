@@ -30,15 +30,21 @@ class MatchesFragment:Fragment(){
     }
 
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//        createdViewPager()
+//    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         createdViewPager()
     }
 
 
     fun createdViewPager(){
         println("test testtt steeee")
-        val myPageAdapter = MyPageAdapter(supportFragmentManagerMatches)
+
+        val myPageAdapter = MyPageAdapter(childFragmentManager)
         viewpager_main.adapter = myPageAdapter
         viewpager_main.addOnPageChangeListener(
                 TabLayout.TabLayoutOnPageChangeListener(tabs_main))
