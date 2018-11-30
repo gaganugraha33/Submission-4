@@ -2,8 +2,10 @@ package nugraha.angga.com.footballmatch.view
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.SearchView;
 import android.view.*
@@ -118,6 +120,7 @@ class TeamsFragment :Fragment(), AllTeamFragmentView, AdapterView.OnItemSelected
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)
+        menu?.clear()
         activity?.menuInflater?.inflate(R.menu.menu_search, menu)
         val searchItem = menu?.findItem(R.id.action_search)
         val searchView = searchItem?.getActionView() as SearchView
@@ -154,5 +157,6 @@ class TeamsFragment :Fragment(), AllTeamFragmentView, AdapterView.OnItemSelected
         }
         searchView.setOnQueryTextListener(queryTextListener)
     }
+
 
 }

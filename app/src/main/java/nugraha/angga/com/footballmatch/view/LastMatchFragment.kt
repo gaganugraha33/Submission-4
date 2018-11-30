@@ -131,6 +131,7 @@ class LastMatchFragment :Fragment(), MatchFragmentView , AdapterView.OnItemSelec
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)
+        menu?.clear()
         activity?.menuInflater?.inflate(R.menu.menu_search, menu)
         val searchItem = menu?.findItem(R.id.action_search)
         val searchView = searchItem?.getActionView() as SearchView
@@ -167,5 +168,6 @@ class LastMatchFragment :Fragment(), MatchFragmentView , AdapterView.OnItemSelec
         }
         searchView.setOnQueryTextListener(queryTextListener)
     }
+
 
 }

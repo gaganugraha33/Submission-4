@@ -18,6 +18,7 @@ import nugraha.angga.com.footballmatch.R
 import nugraha.angga.com.footballmatch.model.eventMatchModel.EventMatch
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -46,11 +47,15 @@ fun getDateWithServerTimeStamp(date:String): String {
 }
 
 fun formatGMTMatch(dateMatch: String?, timeMatch: String?): Date? {
-    val FORMAT_24_HOURS = "yyyy-MM-dd HH:mm:ss"
-    val formatterMatch = SimpleDateFormat(FORMAT_24_HOURS)
-    formatterMatch.timeZone = TimeZone.getTimeZone("UTC")
-    val dateTimeMatch = "$dateMatch $timeMatch"
-    return formatterMatch.parse(dateTimeMatch)
+   try {
+       val FORMAT_24_HOURS = "yyyy-MM-dd HH:mm:ss"
+       val formatterMatch = SimpleDateFormat(FORMAT_24_HOURS)
+       formatterMatch.timeZone = TimeZone.getTimeZone("UTC")
+       val dateTimeMatch = "$dateMatch $timeMatch"
+       return formatterMatch.parse(dateTimeMatch)
+   }catch (exception:Exception){
+       return null
+   }
 }
 
 class MatchViewHolder(view: View):RecyclerView.ViewHolder(view){
@@ -73,8 +78,13 @@ class MatchViewHolder(view: View):RecyclerView.ViewHolder(view){
         }
 
         val dateTimeMatch = formatGMTMatch(lastMatch.dateEvent, lastMatch.strTime)
-        val clockMatch = SimpleDateFormat("HH:mm", Locale.getDefault()).format(dateTimeMatch)
-        clockText?.text = clockMatch
+        try {
+            val clockMatch = SimpleDateFormat("HH:mm", Locale.getDefault()).format(dateTimeMatch)
+            clockText?.text = clockMatch
+        }catch (exception:Exception){
+            clockText?.text = ""
+        }
+
 
         dateMatchText?.text = getDateWithServerTimeStamp(lastMatch.dateEvent.toString())
 
