@@ -3,22 +3,19 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import kotlinx.android.synthetic.main.matches_layout.*
 import nugraha.angga.com.footballmatch.R
-import nugraha.angga.com.footballmatch.adapter.MyPageAdapter
+import nugraha.angga.com.footballmatch.adapter.MyFavoritPageAdapter
 
 
 
-class MatchesFragment:Fragment(){
+class AllFavoriteFragment:Fragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.matches_layout, container, false)
 
     }
-
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -27,8 +24,8 @@ class MatchesFragment:Fragment(){
 
 
     fun createdViewPager(){
-        val myPageAdapter = MyPageAdapter(childFragmentManager)
-        viewpager_main.adapter = myPageAdapter
+        val myFavoritPageAdapter = MyFavoritPageAdapter(childFragmentManager)
+        viewpager_main.adapter = myFavoritPageAdapter
         viewpager_main.addOnPageChangeListener(
                 TabLayout.TabLayoutOnPageChangeListener(tabs_main))
         tabs_main.setupWithViewPager(viewpager_main)
@@ -48,6 +45,12 @@ class MatchesFragment:Fragment(){
             }
 
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        val item = menu?.findItem(R.id.action_search)
+        item?.setVisible(false)
     }
 
 }

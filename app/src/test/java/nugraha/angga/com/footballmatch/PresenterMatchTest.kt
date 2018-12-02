@@ -5,6 +5,11 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import nugraha.angga.com.footballmatch.`interface`.MatchFragmentView
 import nugraha.angga.com.footballmatch.api.SportDBRepository
+import nugraha.angga.com.footballmatch.model.allLeagueModel.AllLeague
+import nugraha.angga.com.footballmatch.model.allLeagueModel.League
+import nugraha.angga.com.footballmatch.model.eventMatchModel.EventMatch
+import nugraha.angga.com.footballmatch.model.eventMatchModel.MatchFootbal
+import nugraha.angga.com.footballmatch.model.eventMatchModel.MatchFootbalSearch
 import nugraha.angga.com.footballmatch.presenter.MatchFragmentPresenter
 import org.junit.Before
 import org.junit.Test
@@ -36,6 +41,14 @@ class PresenterMatchTest {
     private
     lateinit var response: MatchFootbal
 
+    @Mock
+    private
+    lateinit var responseSearch: MatchFootbalSearch
+
+    @Mock
+    private
+    lateinit var responseLeague: AllLeague
+
     @Before
     fun setup(){
         MockitoAnnotations.initMocks(this)
@@ -45,11 +58,11 @@ class PresenterMatchTest {
     fun getTestMatchList(){
         val listEventMatch: MutableList<EventMatch> = mutableListOf()
 
-        `when`(apiRepositoryTest.lastMatchReq()
+        `when`(apiRepositoryTest.lastMatchReq("4328")
         ).thenReturn(Observable.just(response))
 
         matchFragmentPresenter = MatchFragmentPresenter(view, compositeDisposable, apiRepositoryTest, Schedulers.trampoline(), Schedulers.trampoline())
-        matchFragmentPresenter.getMatchList()
+        matchFragmentPresenter.getMatchList("4328")
 
         response.events?.let { listEventMatch.addAll(it) }
 
@@ -62,17 +75,51 @@ class PresenterMatchTest {
     fun getTestNextMatchList(){
         val listEventMatch: MutableList<EventMatch> = mutableListOf()
 
-        `when`(apiRepositoryTest.nextMatchReq()
+        `when`(apiRepositoryTest.nextMatchReq("4328")
         ).thenReturn(Observable.just(response))
 
         matchFragmentPresenter = MatchFragmentPresenter(view, compositeDisposable, apiRepositoryTest, Schedulers.trampoline(), Schedulers.trampoline())
-        matchFragmentPresenter.getNextMatchList()
+        matchFragmentPresenter.getNextMatchList("4328")
 
         response.events?.let { listEventMatch.addAll(it) }
 
         Mockito.verify(view).showLoading()
         Mockito.verify(view).hideLoading()
         Mockito.verify(view).showMatchList(listEventMatch)
+    }
+
+    @Test
+    fun getTestSearchMatchList(){
+        val listEventMatch: MutableList<EventMatch> = mutableListOf()
+
+        `when`(apiRepositoryTest.searchEvent("Arsenal")
+        ).thenReturn(Observable.just(responseSearch))
+
+        matchFragmentPresenter = MatchFragmentPresenter(view, compositeDisposable, apiRepositoryTest, Schedulers.trampoline(), Schedulers.trampoline())
+        matchFragmentPresenter.getSearchMatchList("Arsenal")
+
+        responseSearch.event?.let { listEventMatch.addAll(it) }
+
+        Mockito.verify(view).showLoading()
+        Mockito.verify(view).hideLoading()
+        Mockito.verify(view).showMatchList(listEventMatch)
+    }
+
+    @Test
+    fun getTestAllLeague(){
+        val listLeague: MutableList<League> = mutableListOf()
+
+        `when`(apiRepositoryTest.allLeague()
+        ).thenReturn(Observable.just(responseLeague))
+
+        matchFragmentPresenter = MatchFragmentPresenter(view, compositeDisposable, apiRepositoryTest, Schedulers.trampoline(), Schedulers.trampoline())
+        matchFragmentPresenter.getAllLeague()
+
+        responseLeague.leagues?.let { listLeague.addAll(it) }
+
+        Mockito.verify(view).showLoading()
+        Mockito.verify(view).hideLoading()
+        Mockito.verify(view).showListAllLeague(listLeague)
     }
 
 }

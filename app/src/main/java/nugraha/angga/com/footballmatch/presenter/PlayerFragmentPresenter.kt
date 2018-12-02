@@ -14,7 +14,6 @@ class PlayerFragmentPresenter(private val view:PlayerFragmentView,
                               private val mainSchedulers: Scheduler) {
 
         fun getPlayerList(nameClub:String){
-            println("cek isinya "+nameClub)
             view.showLoading()
             compositeDisposable.add(
                     repository.allPlayer(nameClub)
@@ -22,12 +21,10 @@ class PlayerFragmentPresenter(private val view:PlayerFragmentView,
                             .subscribeOn(mainSchedulers)
                             .subscribe ({
                                 PlayerData ->
-                                println("suksesss "+ (PlayerData.player?.size))
                                 view.hideLoading()
                                 view.showPlayerList(PlayerData.player)
 
                             }, { error ->
-                                println("ceekkk errorrr "+ error.message)
                                 error.printStackTrace()
                             })
             )

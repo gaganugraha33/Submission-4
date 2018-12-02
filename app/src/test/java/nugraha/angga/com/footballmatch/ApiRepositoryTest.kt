@@ -20,9 +20,37 @@ class ApiRepositoryTest {
     }
 
     @Test
+    fun testSearchEvent(){
+        val apiRepository = Mockito.mock(ServiceSportDBApi::class.java)
+        apiRepository.getSearchEvent("Arsenal")
+        Mockito.verify(apiRepository).getSearchEvent("Arsenal")
+    }
+
+    @Test
     fun testAllTeamLeague(){
         val apiRepository = Mockito.mock(ServiceSportDBApi::class.java)
         apiRepository.getAllTeamLeague("4328")
         Mockito.verify(apiRepository).getAllTeamLeague("4328")
+    }
+
+    @Test
+    fun testSearchTeamLeague(){
+        val apiRepository = Mockito.mock(ServiceSportDBApi::class.java)
+        apiRepository.getSearchTeamLeague("Arsenal")
+        Mockito.verify(apiRepository).getSearchTeamLeague("Arsenal")
+    }
+
+    @Test
+    fun testPlayerList(){
+        val apiRepository = Mockito.mock(ServiceSportDBApi::class.java)
+        apiRepository.getPlayerList("Arsenal")
+        Mockito.verify(apiRepository).getPlayerList("Arsenal")
+    }
+
+    @Test
+    fun testAllLeague(){
+        val apiRepository = Mockito.mock(ServiceSportDBApi::class.java)
+        apiRepository.getAllLeague()
+        Mockito.verify(apiRepository).getAllLeague()
     }
 }

@@ -4,17 +4,19 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.PagerAdapter
+import nugraha.angga.com.footballmatch.view.FavoriteFragment
 import nugraha.angga.com.footballmatch.view.LastMatchFragment
 import nugraha.angga.com.footballmatch.view.NextMatchFragment
+import nugraha.angga.com.footballmatch.view.TeamsFavoriteFragment
 
-class MyPageAdapter(fm:FragmentManager):FragmentPagerAdapter(fm) {
+class MyFavoritPageAdapter(fm:FragmentManager):FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> {
-                LastMatchFragment()
+                FavoriteFragment()
             }
-            1 -> NextMatchFragment()
+            1 -> TeamsFavoriteFragment()
             else -> {
                 return NextMatchFragment()
             }
@@ -32,10 +34,10 @@ class MyPageAdapter(fm:FragmentManager):FragmentPagerAdapter(fm) {
 
     override fun getPageTitle(position: Int): CharSequence {
         return when (position) {
-            0 -> "Last Match"
-            1 -> "Next Match"
+            0 -> "Matches"
+            1 -> "Team"
             else -> {
-                return "Next Match"
+                return "Team"
             }
         }
     }

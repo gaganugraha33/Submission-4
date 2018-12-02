@@ -121,6 +121,7 @@ class MatchUI:AnkoComponent<ViewGroup>{
             frameLayout {
                 lparams(width = matchParent, height = wrapContent)
                 cardView {
+                    id = R.id.cardMatch
                     lparams(width = matchParent, height = wrapContent)
                     layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT).apply {
                         leftMargin = dip(5)

@@ -4,10 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import kotlinx.android.synthetic.main.match_layout.*
+import kotlinx.android.synthetic.main.match_layout_favorite.*
 import nugraha.angga.com.footballmatch.R
 import nugraha.angga.com.footballmatch.`interface`.FavoriteFragmentView
 import nugraha.angga.com.footballmatch.adapter.MatchAdapter
@@ -23,40 +22,41 @@ class FavoriteFragment : Fragment(), FavoriteFragmentView {
     private var favorites: MutableList<EventMatch> = mutableListOf()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.match_layout, container, false)
+        return inflater?.inflate(R.layout.match_layout_favorite, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvMatch.layoutManager = LinearLayoutManager(context)
+        spinner_teams_favorite.visibility = View.GONE
+        rvMatchFavorite.layoutManager = LinearLayoutManager(context)
         matchAdapter = MatchAdapter(favorites, context!!.getString(R.string.type_last_match), context!!){
             val intentDetail = Intent(context, DetaillActivity::class.java)
             intentDetail.putExtra("data", it as Serializable)
             startActivity(intentDetail)
         }
-        rvMatch.adapter = matchAdapter
+        rvMatchFavorite.adapter = matchAdapter
 
 
         favoriteFragmentPresenter = FavoriteFragmentPresenter(this, context)
         favoriteFragmentPresenter.getFavorite()
 
 
-        swpLayout.onRefresh {
+        swpLayoutFavorite.onRefresh {
             favoriteFragmentPresenter.getFavorite()
         }
     }
 
 
     override fun showLoading() {
-        swpLayout.isRefreshing = true
+        swpLayoutFavorite.isRefreshing = true
     }
 
     override fun hideLoading() {
-        swpLayout.isRefreshing = false
+        swpLayoutFavorite.isRefreshing = false
     }
 
     override fun showAllFavorite(dataFavorite: List<Favorite>?) {
-        swpLayout.isRefreshing = false
+        swpLayoutFavorite.isRefreshing = false
         favorites.clear()
 
         if (dataFavorite != null) {
@@ -94,4 +94,5 @@ class FavoriteFragment : Fragment(), FavoriteFragmentView {
         super.onResume()
         favoriteFragmentPresenter.getFavorite()
     }
+
 }

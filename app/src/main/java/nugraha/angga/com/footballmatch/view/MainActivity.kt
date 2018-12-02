@@ -34,19 +34,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadMatchesFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
-            val actionBar = supportActionBar
-            val matchesFragment:MatchesFragment = MatchesFragment.newInstance(supportFragmentManager)
-            actionBar!!.elevation = 0F
             supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.main_container, matchesFragment, MatchesFragment::class.java.simpleName)
+                    .replace(R.id.main_container, MatchesFragment(), MatchesFragment::class.java.simpleName)
                     .commit()
         }
     }
 
     private fun loadTeamFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
-            val actionBar = supportActionBar
             supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.main_container, TeamsFragment(), TeamsFragment::class.java.simpleName)
@@ -56,10 +52,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadFavoriteFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
-            val actionBar = supportActionBar
             supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.main_container, FavoriteFragment(), FavoriteFragment::class.java.simpleName)
+                    .replace(R.id.main_container, AllFavoriteFragment(), AllFavoriteFragment::class.java.simpleName)
                     .commit()
         }
     }

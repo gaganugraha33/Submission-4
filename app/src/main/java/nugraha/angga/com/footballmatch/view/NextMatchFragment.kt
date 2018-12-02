@@ -14,6 +14,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.match_layout.*
+import kotlinx.android.synthetic.main.match_layout_next.*
 import nugraha.angga.com.footballmatch.R
 import nugraha.angga.com.footballmatch.`interface`.MatchFragmentView
 import nugraha.angga.com.footballmatch.adapter.MatchAdapter
@@ -32,13 +33,6 @@ class NextMatchFragment :Fragment(), MatchFragmentView, AdapterView.OnItemSelect
     private var nextMatch:MutableList<EventMatch> = mutableListOf()
     var list_of_items:ArrayList<String> = ArrayList()
 
-    companion object{
-
-        fun newInstance(): NextMatchFragment {
-            val fragment = NextMatchFragment()
-            return fragment
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,19 +40,19 @@ class NextMatchFragment :Fragment(), MatchFragmentView, AdapterView.OnItemSelect
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.match_layout, container, false)
+        return inflater?.inflate(R.layout.match_layout_next, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         codeLeagueName = "4328"
-        rvMatch.layoutManager = LinearLayoutManager(context)
+        rvMatchNext.layoutManager = LinearLayoutManager(context)
         matchAdapter = MatchAdapter(nextMatch, context!!.getString(R.string.type_next_match), context!!){
             val intentDetail = Intent(context, DetaillActivity::class.java)
             intentDetail.putExtra("data", it as Serializable)
             startActivity(intentDetail)
         }
-        rvMatch.adapter = matchAdapter
+        rvMatchNext.adapter = matchAdapter
 
         val compositeDisposable: CompositeDisposable = CompositeDisposable()
         val repository = ServiceSportDBProvider.providerNextMatchRepository()
@@ -67,22 +61,22 @@ class NextMatchFragment :Fragment(), MatchFragmentView, AdapterView.OnItemSelect
         matchfragmentPresenter.getAllLeague()
 
 
-        swpLayout.onRefresh {
+        swpLayoutNext.onRefresh {
             matchfragmentPresenter.getAllLeague()
             matchfragmentPresenter.getNextMatchList(codeLeagueName)
         }
     }
 
     override fun showLoading() {
-      swpLayout.isRefreshing = true
+        swpLayoutNext.isRefreshing = true
     }
 
     override fun hideLoading() {
-        swpLayout.isRefreshing = false
+        swpLayoutNext.isRefreshing = false
     }
 
     override fun showMatchList(data: List<EventMatch>?) {
-        swpLayout.isRefreshing = false
+        swpLayoutNext.isRefreshing = false
         nextMatch.clear()
         if (data != null) {
             for (i in data.indices){
@@ -96,7 +90,7 @@ class NextMatchFragment :Fragment(), MatchFragmentView, AdapterView.OnItemSelect
 
     override fun showListAllLeague(data: List<League>?) {
 
-        swpLayout.isRefreshing = false
+        swpLayoutNext.isRefreshing = false
         allLeagueList.clear()
         list_of_items.clear()
         data?.let { allLeagueList.addAll(it) }
@@ -109,9 +103,9 @@ class NextMatchFragment :Fragment(), MatchFragmentView, AdapterView.OnItemSelect
 
         var adapterSpinner = ArrayAdapter(context, android.R.layout.simple_spinner_item, list_of_items)
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner_teams.setAdapter(adapterSpinner)
+        spinner_teams_next.setAdapter(adapterSpinner)
 
-        spinner_teams.setOnItemSelectedListener(this)
+        spinner_teams_next.setOnItemSelectedListener(this)
 
     }
 
@@ -142,11 +136,11 @@ class NextMatchFragment :Fragment(), MatchFragmentView, AdapterView.OnItemSelect
         val queryTextListener = object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 if (query.equals("")){
-                    spinner_teams.visibility  = View.VISIBLE
+                    spinner_teams_next.visibility  = View.VISIBLE
                     matchfragmentPresenter.getAllLeague()
                     matchfragmentPresenter.getNextMatchList(codeLeagueName)
                 }else{
-                    spinner_teams.visibility  = View.GONE
+                    spinner_teams_next.visibility  = View.GONE
                     matchfragmentPresenter.getSearchMatchList(query)
                 }
                 searchView.clearFocus()
@@ -155,11 +149,11 @@ class NextMatchFragment :Fragment(), MatchFragmentView, AdapterView.OnItemSelect
 
             override fun onQueryTextChange(query: String): Boolean {
                 if (query.equals("")){
-                    spinner_teams.visibility  = View.VISIBLE
+                    spinner_teams_next.visibility  = View.VISIBLE
                     matchfragmentPresenter.getAllLeague()
                     matchfragmentPresenter.getNextMatchList(codeLeagueName)
                 }else{
-                    spinner_teams.visibility  = View.GONE
+                    spinner_teams_next.visibility  = View.GONE
                     matchfragmentPresenter.getSearchMatchList(query)
                 }
                 return true
