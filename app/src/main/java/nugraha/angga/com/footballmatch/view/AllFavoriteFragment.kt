@@ -22,6 +22,11 @@ class AllFavoriteFragment:Fragment(){
         createdViewPager()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
 
     fun createdViewPager(){
         val myFavoritPageAdapter = MyFavoritPageAdapter(childFragmentManager)
@@ -47,10 +52,11 @@ class AllFavoriteFragment:Fragment(){
         })
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        super.onCreateOptionsMenu(menu, inflater)
+    override fun onPrepareOptionsMenu(menu: Menu?) {
+        super.onPrepareOptionsMenu(menu)
         val item = menu?.findItem(R.id.action_search)
         item?.setVisible(false)
     }
+
 
 }

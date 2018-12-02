@@ -69,13 +69,16 @@ class MatchViewHolder(view: View):RecyclerView.ViewHolder(view){
     private val bellImage: ImageView = view.find(R.id.bell)
 
     fun bindItem(lastMatch: EventMatch, type:String, context: Context ,listener: (EventMatch) -> Unit){
-        if (type.equals(context.getString(R.string.type_last_match))){
-            bellImage.visibility = View.GONE
-        }else{
-            bellImage.visibility = View.VISIBLE
-            Glide.with(bellImage).load(R.drawable.ic_bell).into(bellImage)
-            bellImage.setOnClickListener({ v -> context.toast("Hello") })
-        }
+
+//        if (type.equals(context.getString(R.string.type_last_match))){
+//            bellImage.visibility = View.GONE
+//        }else{
+//            bellImage.visibility = View.VISIBLE
+//            Glide.with(bellImage).load(R.drawable.ic_bell).into(bellImage)
+//            bellImage.setOnClickListener({ v -> context.toast("Hello") })
+//        }
+
+        bellImage.visibility = View.GONE
 
         val dateTimeMatch = formatGMTMatch(lastMatch.dateEvent, lastMatch.strTime)
         try {
