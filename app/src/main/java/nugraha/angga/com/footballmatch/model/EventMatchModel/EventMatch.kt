@@ -9,10 +9,6 @@ class EventMatch : Serializable {
     @SerializedName("idEvent")
     @Expose
     var idEvent: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("idSoccerXML")
     @Expose
     var idSoccerXML: String? = null
@@ -40,44 +36,24 @@ class EventMatch : Serializable {
     @SerializedName("strHomeTeam")
     @Expose
     var strHomeTeam: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("strAwayTeam")
     @Expose
     var strAwayTeam: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("intHomeScore")
     @Expose
     var intHomeScore: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("intRound")
     @Expose
     var intRound: String? = null
     @SerializedName("intAwayScore")
     @Expose
     var intAwayScore: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("intSpectators")
     @Expose
     var intSpectators: Any? = null
     @SerializedName("strHomeGoalDetails")
     @Expose
     var strHomeGoalDetails: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("strHomeRedCards")
     @Expose
     var strHomeRedCards: String? = null
@@ -87,38 +63,18 @@ class EventMatch : Serializable {
     @SerializedName("strHomeLineupGoalkeeper")
     @Expose
     var strHomeLineupGoalkeeper: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("strHomeLineupDefense")
     @Expose
     var strHomeLineupDefense: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("strHomeLineupMidfield")
     @Expose
     var strHomeLineupMidfield: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("strHomeLineupForward")
     @Expose
     var strHomeLineupForward: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("strHomeLineupSubstitutes")
     @Expose
     var strHomeLineupSubstitutes: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("strHomeFormation")
     @Expose
     var strHomeFormation: String? = null
@@ -131,76 +87,36 @@ class EventMatch : Serializable {
     @SerializedName("strAwayGoalDetails")
     @Expose
     var strAwayGoalDetails: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("strAwayLineupGoalkeeper")
     @Expose
     var strAwayLineupGoalkeeper: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("strAwayLineupDefense")
     @Expose
     var strAwayLineupDefense: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("strAwayLineupMidfield")
     @Expose
     var strAwayLineupMidfield: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("strAwayLineupForward")
     @Expose
     var strAwayLineupForward: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("strAwayLineupSubstitutes")
     @Expose
     var strAwayLineupSubstitutes: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("strAwayFormation")
     @Expose
     var strAwayFormation: String? = null
     @SerializedName("intHomeShots")
     @Expose
     var intHomeShots: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("intAwayShots")
     @Expose
     var intAwayShots: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("dateEvent")
     @Expose
     var dateEvent: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("strDate")
     @Expose
     var strDate: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
     @SerializedName("strTime")
     @Expose
     var strTime: String? = null

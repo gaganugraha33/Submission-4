@@ -1,7 +1,6 @@
 package nugraha.angga.com.footballmatch.main
 
 import android.support.test.espresso.Espresso
-import android.support.test.espresso.Espresso.onData
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.assertion.ViewAssertions
 import android.support.test.espresso.contrib.RecyclerViewActions
@@ -11,17 +10,11 @@ import nugraha.angga.com.footballmatch.view.MainActivity
 import org.junit.Rule
 import android.support.test.rule.ActivityTestRule
 import android.support.v7.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.matches_layout.*
 import nugraha.angga.com.footballmatch.R
 import org.junit.Test
 import org.junit.runner.RunWith
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.matcher.ViewMatchers.*
-import kotlinx.android.synthetic.main.match_layout.*
-import kotlinx.android.synthetic.main.player_layout.*
-import kotlinx.android.synthetic.main.team_detail_activity_layout.*
-import nugraha.angga.com.footballmatch.view.LastMatchFragment
 import org.hamcrest.core.AllOf
 
 

@@ -16,9 +16,19 @@
     <string name="goal_keeper">Goal Keeper</string>
     <string name="defense">Defense</string>
     <string name="midfield">Midfield</string>
-    <string name="forward">Forward</string>
     <string name="subtitutes">Subtitutes</string>
     <string name="data_test">data test</string>
     <string name="type_last_match">type last match</string>
     <string name="type_next_match">type next match</string>
+    <string name="image">image</string>
+    <string name="home_score">home score</string>
+    <string name="away_score">away score</string>
+    <string name="weight_kg">Weight (Kg)</string>
+    <string name="height_m">Height (m)</string>
+    <string name="isi_weight">65.76</string>
+    <string name="isi_height">1.68</string>
+    <string name="forward">Forward</string>
+    <string name="name_team">name team</string>
+    <string name="years_team">years team</string>
+    <string name="stadion">stadion</string>
 </resources>

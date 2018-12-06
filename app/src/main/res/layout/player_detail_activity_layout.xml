@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     >
 
     <LinearLayout
@@ -17,6 +18,7 @@
             android:layout_height="230dp"
             android:layout_marginBottom="5dp"
             android:scaleType="centerCrop"
+            android:contentDescription="@string/image"
             />
 
         <LinearLayout
@@ -29,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Weight (Kg)"
+                android:text="@string/weight_kg"
                 android:textColor="@color/gray"
                 android:textSize="20sp"
                 android:gravity="center"
@@ -39,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Height (m)"
+                android:text="@string/height_m"
                 android:gravity="center"
                 android:textColor="@color/gray"
                 android:textSize="20sp"
@@ -59,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="65.76"
+                tools:text="@string/isi_weight"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="40sp"
                 android:gravity="center"
@@ -70,7 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="1.68"
+                tools:text="@string/isi_height"
                 android:gravity="center"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="40sp"
@@ -81,7 +83,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Forward"
+            android:text="@string/forward"
             android:textSize="20sp"
             android:padding="5dp"
             android:textColor="@color/colorPrimaryDark"
@@ -100,7 +102,7 @@
             android:id="@+id/tvDescPlayer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="asdasdasdasd"
+            android:contentDescription="desc player"
             android:textColor="@color/gray"
             android:textSize="18sp"
             />

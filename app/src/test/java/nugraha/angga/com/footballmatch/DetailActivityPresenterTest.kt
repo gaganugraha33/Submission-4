@@ -3,11 +3,11 @@ package nugraha.angga.com.footballmatch
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import nugraha.angga.com.footballmatch.`interface`.DetailActivityView
+import nugraha.angga.com.footballmatch.menudetailmatch.view.DetailActivityView
 import nugraha.angga.com.footballmatch.api.SportDBRepository
 import nugraha.angga.com.footballmatch.model.allTeamLeagueModel.AllTeamLeague
 import nugraha.angga.com.footballmatch.model.allTeamLeagueModel.Team
-import nugraha.angga.com.footballmatch.presenter.DetailActivityPresenter
+import nugraha.angga.com.footballmatch.menudetailmatch.presenter.DetailActivityPresenter
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock

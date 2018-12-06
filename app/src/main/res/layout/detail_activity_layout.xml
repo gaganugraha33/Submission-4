@@ -48,6 +48,7 @@
                         android:id="@+id/ivImageHomeScore"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/home_score"
                         />
 
                     <TextView
@@ -118,7 +119,9 @@
                     <ImageView
                         android:id="@+id/ivImageAwayScore"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/away_score"
+                        />
 
                     <TextView
                         android:layout_marginTop="10dp"

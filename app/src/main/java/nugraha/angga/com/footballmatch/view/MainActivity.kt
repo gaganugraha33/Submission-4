@@ -4,7 +4,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import nugraha.angga.com.footballmatch.R
-import nugraha.angga.com.footballmatch.adapter.MyPageAdapter
+import nugraha.angga.com.footballmatch.menufavorite.AllFavoriteFragment
+import nugraha.angga.com.footballmatch.menumatches.MatchesFragment
+import nugraha.angga.com.footballmatch.menuteam.TeamsFragment
 
 class MainActivity : AppCompatActivity() {
 

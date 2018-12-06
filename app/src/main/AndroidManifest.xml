@@ -18,13 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.DetaillActivity"
-            android:label="Match Detail"></activity>
-        <activity android:name=".view.TeamDetailActivity"
+        <activity android:name=".menudetailmatch.DetaillActivity"
+            android:label="Match Detail"/>
+        <activity android:name=".menudetailteam.TeamDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:label=""></activity>
-        <activity android:name=".view.PlayerDetailActivity"
-            android:label="Detail Player"></activity>
+            android:label=""/>
+        <activity android:name=".menudetailplayer.PlayerDetailActivity"
+            android:label="Detail Player"/>
     </application>
 
 </manifest>
